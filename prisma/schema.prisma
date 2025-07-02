@@ -1,0 +1,74 @@
+//генерируем схему, которую мы будем применять для javaScript
+generator client {
+    provider = "prisma-client-js"
+}
+
+//объясняем призме с какой бд необходимо работать
+datasource db {
+    provider = "postgresql"
+    url      = env("POSTGRES_URL")
+}
+
+//описываем таблицы
+model User {
+    id Int @id @default(autoincrement())
+
+    fullName String
+    email    String @unique
+    password String
+
+    Cart Cart[] //
+
+    createAt DateTime @default(now())
+    updateAt DateTime @updatedAt
+}
+
+model Category {
+    id       Int       @id @default(autoincrement())
+    name     String    @unique
+    products Product[]
+}
+
+model Product {
+    id Int @id @default(autoincrement())
+
+    name     String
+    imageUrl String
+
+    categories Category[]
+    CartItem   CartItem?
+
+    createAt DateTime @default(now())
+    updateAt DateTime @updatedAt
+}
+
+model Cart {
+    id Int @id @default(autoincrement())
+
+    user   User? @relation(fields: [userId], references: [id])
+    userId Int?
+
+    token String
+
+    totalAmount Int @default(0)
+
+    CartItem CartItem[]
+
+    createAt DateTime @default(now())
+    updateAt DateTime @updatedAt
+}
+
+model CartItem {
+    id Int @id @default(autoincrement())
+
+    cart   Cart @relation(fields: [cartId], references: [id])
+    cartId Int
+
+    product   Product @relation(fields: [productId], references: [id])
+    productId Int     @unique
+
+    quantity Int
+
+    createAt DateTime @default(now())
+    updateAt DateTime @updatedAt
+}

@@ -8,10 +8,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import { Badge, useMediaQuery, useTheme } from '@mui/material';
 import { ActionsContainer, ActionsTypography, ActionIconButton } from '@/styles';
+import { useAppDrawerStore } from '@/store/appDrawer';
 //import { useUIContext } from '@/context/ui';
 
 export const Actions = () => {
   //const { setDrawerOpen } = useUIContext();
+  const setDrawerOpen = useAppDrawerStore((state) => state.setDrawerOpen);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('md'));
   const iconSize = match ? 'medium' : 'large';
@@ -26,8 +28,7 @@ export const Actions = () => {
           </ActionIconButton>
           <ActionIconButton aria-label='menu'>
             <Badge color='primary'>
-              <MenuIcon color='action' fontSize={iconSize} />
-              {/* onClick={() => setDrawerOpen(true)} */}
+              <MenuIcon color='action' fontSize={iconSize} onClick={() => setDrawerOpen(true)} />
             </Badge>
           </ActionIconButton>
         </>
