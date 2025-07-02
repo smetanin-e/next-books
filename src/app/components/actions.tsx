@@ -1,0 +1,55 @@
+'use client';
+
+import React from 'react';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
+import { Badge, useMediaQuery, useTheme } from '@mui/material';
+import { ActionsContainer, ActionsTypography, ActionIconButton } from '@/styles';
+//import { useUIContext } from '@/context/ui';
+
+export const Actions = () => {
+  //const { setDrawerOpen } = useUIContext();
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down('md'));
+  const iconSize = match ? 'medium' : 'large';
+  return (
+    <ActionsContainer direction='row' spacing={2} pt={1}>
+      {match && (
+        <>
+          <ActionIconButton aria-label='home'>
+            <Badge color='primary'>
+              <HomeIcon color='action' fontSize={iconSize} />
+            </Badge>
+          </ActionIconButton>
+          <ActionIconButton aria-label='menu'>
+            <Badge color='primary'>
+              <MenuIcon color='action' fontSize={iconSize} />
+              {/* onClick={() => setDrawerOpen(true)} */}
+            </Badge>
+          </ActionIconButton>
+        </>
+      )}
+
+      <ActionIconButton aria-label='cart'>
+        <Badge badgeContent={29} color='primary'>
+          <ShoppingCartIcon color='action' fontSize={iconSize} />
+        </Badge>
+        <ActionsTypography>Корзина</ActionsTypography>
+      </ActionIconButton>
+      <ActionIconButton aria-label='favorite'>
+        <Badge badgeContent={1} color='primary'>
+          <FavoriteIcon color='action' fontSize={iconSize} />
+        </Badge>
+        <ActionsTypography>Избранное</ActionsTypography>
+      </ActionIconButton>
+      <ActionIconButton aria-label='prifile'>
+        <AccountCircleIcon color='action' fontSize={iconSize} />
+
+        <ActionsTypography>Профиль</ActionsTypography>
+      </ActionIconButton>
+    </ActionsContainer>
+  );
+};
