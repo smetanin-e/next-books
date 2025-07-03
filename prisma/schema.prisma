@@ -17,36 +17,63 @@ model User {
     email    String @unique
     password String
 
-    Cart Cart[] //
+    cart   Cart?
+    cartId Int?
 
     createAt DateTime @default(now())
     updateAt DateTime @updatedAt
 }
 
 model Category {
-    id       Int       @id @default(autoincrement())
-    name     String    @unique
-    products Product[]
+    id   Int    @id @default(autoincrement())
+    name String @unique
+
+    subcategories SubCategory[]
+
+    books Book[]
 }
 
-model Product {
-    id Int @id @default(autoincrement())
+model SubCategory {
+    id   Int    @id @default(autoincrement())
+    name String @unique
 
-    name     String
-    imageUrl String
+    categoryId Int
+    category   Category @relation(fields: [categoryId], references: [id])
 
-    categories Category[]
-    CartItem   CartItem?
+    books Book[]
+}
 
-    createAt DateTime @default(now())
-    updateAt DateTime @updatedAt
+model Tag {
+    id   Int    @id @default(autoincrement())
+    name String @unique
+
+    books Book[]
+}
+
+model Book {
+    id          Int    @id @default(autoincrement())
+    title       String
+    description String
+    author      String
+    price       Int
+    rating      Float
+
+    tags Tag[]
+
+    subcategoryId Int
+    subcategory   SubCategory @relation(fields: [subcategoryId], references: [id])
+
+    categoryId Int
+    category   Category @relation(fields: [categoryId], references: [id])
+
+    cartItem CartItem[]
 }
 
 model Cart {
     id Int @id @default(autoincrement())
 
     user   User? @relation(fields: [userId], references: [id])
-    userId Int?
+    userId Int?  @unique
 
     token String
 
@@ -64,8 +91,8 @@ model CartItem {
     cart   Cart @relation(fields: [cartId], references: [id])
     cartId Int
 
-    product   Product @relation(fields: [productId], references: [id])
-    productId Int     @unique
+    bookId Int?
+    book   Book? @relation(fields: [bookId], references: [id])
 
     quantity Int
 
