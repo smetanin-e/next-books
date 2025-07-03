@@ -14,11 +14,17 @@ model User {
     id Int @id @default(autoincrement())
 
     fullName String
-    email    String @unique
+    email    String   @unique
     password String
+    role     UserRole @default(USER)
+    verified DateTime
 
-    cart   Cart?
-    cartId Int?
+    provider   String?
+    providerId String?
+
+    cart             Cart?
+    orders           Order[]
+    verificationCode VerificationCode?
 
     createAt DateTime @default(now())
     updateAt DateTime @updatedAt
@@ -52,11 +58,15 @@ model Tag {
 
 model Book {
     id          Int    @id @default(autoincrement())
+    imageUrl    String
     title       String
     description String
     author      String
     price       Int
     rating      Float
+    sale        Int?
+
+    ratings Rating[]
 
     tags Tag[]
 
@@ -69,6 +79,19 @@ model Book {
     cartItem CartItem[]
 }
 
+model Rating {
+    id Int @id @default(autoincrement())
+
+    ratingValue Int
+    count       Int @default(0)
+
+    bookId Int
+    book   Book @relation(fields: [bookId], references: [id])
+
+    @@index([bookId])
+    @@map("ratings")
+}
+
 model Cart {
     id Int @id @default(autoincrement())
 
@@ -79,7 +102,7 @@ model Cart {
 
     totalAmount Int @default(0)
 
-    CartItem CartItem[]
+    cartItems CartItem[]
 
     createAt DateTime @default(now())
     updateAt DateTime @updatedAt
@@ -98,4 +121,52 @@ model CartItem {
 
     createAt DateTime @default(now())
     updateAt DateTime @updatedAt
+}
+
+model Order {
+    id Int @id @default(autoincrement())
+
+    userId Int?
+    user   User? @relation(fields: [userId], references: [id])
+
+    token String
+
+    totalAmount Int
+    status      OrderStatus
+    paymentId   String?
+
+    items Json
+
+    fullname String
+    email    String
+    phone    String
+    address  String
+    comment  String
+
+    createAt DateTime @default(now())
+    updateAt DateTime @updatedAt
+}
+
+model VerificationCode {
+    id Int @id @default(autoincrement())
+
+    userId Int   @unique
+    user   User? @relation(fields: [userId], references: [id])
+
+    code String @unique
+
+    createdAt DateTime @default(now())
+
+    @@unique([userId, code])
+}
+
+enum OrderStatus {
+    PENDING
+    SUCCESSED
+    CANCELED
+}
+
+enum UserRole {
+    USER
+    ADMIN
 }
