@@ -63,10 +63,9 @@ model Book {
     description String
     author      String
     price       Int
-    rating      Float
     sale        Int?
 
-    ratings Rating[]
+    rating Rating?
 
     tags Tag[]
 
@@ -82,14 +81,14 @@ model Book {
 model Rating {
     id Int @id @default(autoincrement())
 
-    ratingValue Int
-    count       Int @default(0)
+    ONE   Int @default(0)
+    TWO   Int @default(0)
+    THREE Int @default(0)
+    FOUR  Int @default(0)
+    FIVE  Int @default(0)
 
-    bookId Int
+    bookId Int  @unique
     book   Book @relation(fields: [bookId], references: [id])
-
-    @@index([bookId])
-    @@map("ratings")
 }
 
 model Cart {

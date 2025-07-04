@@ -24,17 +24,59 @@ async function generateData() {
     await prisma.subCategory.createMany({
         data: subcategories,
     })
+    await prisma.tag.createMany({
+        data: tags,
+    })
+
+    
 
     await prisma.book.createMany({
         data: books,
     })
 
-    await prisma.tag.createMany({
-        data: tags,
-    })
+    await prisma.book.update({
+        where: { id: 1 },
+        data: {
+            tags: {
+            connect: [{ id: 1 }]
+            }
+        }
+    });
+    await prisma.book.update({
+        where: { id: 3 },
+        data: {
+            tags: {
+            connect: [{ id: 1}, {id:2} ]
+            }
+        }
+    });
 
     await prisma.rating.createMany({
-        data: ratings,
+        data: ratings
+    })
+
+    await prisma.cart.createMany({
+        data: [
+            {
+                userId: 1,
+                totalAmount: 150,
+                token: 'dsds2121dsds'
+            },
+            {
+                userId: 2,
+                totalAmount: 200,
+                token: 'awaw2121awaw'
+            }
+        ]
+    })
+
+    await prisma.cartItem.create({
+        data: {
+            cartId: 1,
+            bookId: 3,
+            quantity: 2,
+
+        }
     })
 }
 
@@ -44,7 +86,9 @@ async function clearData() {
     await prisma.$executeRaw`TRUNCATE TABLE "SubCategory" RESTART IDENTITY CASCADE`;
     await prisma.$executeRaw`TRUNCATE TABLE "Book" RESTART IDENTITY CASCADE`;
     await prisma.$executeRaw`TRUNCATE TABLE "Tag" RESTART IDENTITY CASCADE`;
-    await prisma.$executeRaw`TRUNCATE TABLE "ratings" RESTART IDENTITY CASCADE`;
+    await prisma.$executeRaw`TRUNCATE TABLE "Rating" RESTART IDENTITY CASCADE`;
+    await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
+    await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {

@@ -29,6 +29,19 @@ export const subcategories = [
     {name: "Романы", categoryId: 4},
 ]
 
+
+
+export const tags = [
+    {name: "Новинки"},
+    {name: "Бестселлеры"},
+]
+
+export const ratings = [
+    {ONE: 1, TWO: 0, THREE: 4, FOUR:12, FIVE: 65, bookId: 1},
+    { bookId: 2}
+]
+
+
 export const books = [
     {
     
@@ -42,7 +55,6 @@ export const books = [
     price: 300,
     categoryId: 1,
     subcategoryId: 4,
-    rating: 4.5,
   },
   {
     imageUrl:
@@ -54,7 +66,7 @@ export const books = [
     price: 600,
     categoryId: 1,
     subcategoryId: 4,
-     rating: 4,
+     
   },
  {
     imageUrl:
@@ -67,20 +79,8 @@ export const books = [
     categoryId: 2,
     subcategoryId: 7,
     sale: 30,
-     rating: 4.9,
+     
   },
 ]
 
-export const tags = [
-    {name: "Новинки"},
-    {name: "Бестселлеры"},
-]
-
-export const ratings = [
-    {ratingValue: 1, bookId: 1},
-    {ratingValue: 2, bookId: 1, count: 1},
-    {ratingValue: 3, bookId: 1, count: 2},
-    {ratingValue: 4, bookId: 1, count: 15},
-    {ratingValue: 5, bookId: 1, count: 62},
-]
 
