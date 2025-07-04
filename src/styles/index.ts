@@ -1,6 +1,6 @@
 
 
-import { IconButton, Stack, styled, Typography } from "@mui/material"
+import { Box, IconButton, Stack, styled, Typography } from "@mui/material"
 
 export const ActionsContainer  = styled(Stack)(({theme}) => ({
 
@@ -11,7 +11,7 @@ export const ActionsContainer  = styled(Stack)(({theme}) => ({
           bottom: 0,
           width: '100%',
           justifyContent: 'space-around',
-          zIndex: 20,
+          zIndex: 2,
         },
 
 }))
@@ -39,4 +39,15 @@ export const ProductCardContainer  = styled(Stack)(({theme}) => ({
         },
 
 }))
+
+export const ImageContainer = styled(Box)({
+    display:"flex", 
+    justifyContent:"center",
+    flexShrink:0 
+});
+export const StyledImage = styled('img')({
+
+  width: '100%',
+  objectFit: 'cover', 
+});
 

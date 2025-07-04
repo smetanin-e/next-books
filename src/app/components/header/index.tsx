@@ -8,6 +8,7 @@ import { HeaderContainer, HeaderLogo } from '@/styles/header';
 import { HeaderSearch } from './header-search';
 import { Actions } from '../actions';
 import { HeaderNav } from './header-nav';
+import Link from 'next/link';
 //import { AppDrawer } from '../drawer';
 
 interface Props {
@@ -17,7 +18,7 @@ interface Props {
 export const Header: React.FC<Props> = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.up('md'));
-  const spacing = match ? 4 : 1;
+  //const spacing = match ? 4 : 1;
   const responsePadding = match ? '150px' : '60px';
   return (
     <ThemeProvider theme={CustomTheme}>
@@ -28,10 +29,10 @@ export const Header: React.FC<Props> = () => {
           position='fixed'
         >
           <Container>
-            <HeaderContainer direction='row' spacing={spacing}>
-              <Box>
+            <HeaderContainer direction='row'>
+              <Link href={'/'}>
                 <HeaderLogo alt='logo' src={logo.src} />
-              </Box>
+              </Link>
               <HeaderSearch />
               {match && <Actions />}
             </HeaderContainer>

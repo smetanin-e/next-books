@@ -6,10 +6,11 @@ export async function GET(req: NextRequest) {
 
     const products = await prisma.book.findMany({
         where: {
-            title: {
-                contains: query,
-                mode: 'insensitive'
-            }
+            OR: [
+                { title: { contains: query, mode: 'insensitive' } },
+                { description: { contains: query, mode: 'insensitive' } },
+                { author: { contains: query, mode: 'insensitive' } }
+                ]
         }
     })
     return NextResponse.json(products)

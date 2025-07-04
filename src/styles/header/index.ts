@@ -43,3 +43,28 @@ export const HeaderList = styled(List)(({theme}) => ({
         flexDirection: 'column',
     }
 }))
+
+
+export const SearchOverlay = styled(Box)(() => ({
+    position:'fixed',
+    top:0,
+    left:0,
+    width:'100%',
+    height:'100%',
+    background: '#000',
+    opacity: 0.4 ,
+    zIndex:3,
+
+}))
+
+export const SearchContainer = styled(Box)(() => ({
+     background:'#fff',
+     padding: 6,
+     borderRadius:4,
+     zIndex:4,
+     marginInline:32,
+     flexGrow:1,
+     position:'relative',
+}))
+
+

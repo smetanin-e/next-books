@@ -9,6 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Badge, useMediaQuery, useTheme } from '@mui/material';
 import { ActionsContainer, ActionsTypography, ActionIconButton } from '@/styles';
 import { useAppDrawerStore } from '@/store/appDrawer';
+import Link from 'next/link';
 //import { useUIContext } from '@/context/ui';
 
 export const Actions = () => {
@@ -21,11 +22,14 @@ export const Actions = () => {
     <ActionsContainer direction='row' spacing={2} pt={1}>
       {match && (
         <>
-          <ActionIconButton aria-label='home'>
-            <Badge color='primary'>
-              <HomeIcon color='action' fontSize={iconSize} />
-            </Badge>
-          </ActionIconButton>
+          <Link href={'/'}>
+            <ActionIconButton aria-label='home'>
+              <Badge color='primary'>
+                <HomeIcon color='action' fontSize={iconSize} />
+              </Badge>
+            </ActionIconButton>
+          </Link>
+
           <ActionIconButton aria-label='menu'>
             <Badge color='primary'>
               <MenuIcon color='action' fontSize={iconSize} onClick={() => setDrawerOpen(true)} />
