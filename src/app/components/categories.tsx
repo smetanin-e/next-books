@@ -13,7 +13,7 @@ import { Box, CircularProgress, Divider, Grow, styled, Typography } from '@mui/m
 import { useCatalog } from '../hooks/useCatalog';
 
 export const Categories = () => {
-  const { categories, subcategories } = useCatalog();
+  const { categories, subcategories, loading } = useCatalog();
 
   const [value, setValue] = React.useState<string | null>('');
 
@@ -40,7 +40,7 @@ export const Categories = () => {
       </Typography>
 
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} component='nav'>
-        {categories.length < 1 || subcategories.length < 1 ? (
+        {loading ? (
           <Box pt={20} width={'320px'} sx={{ display: 'flex', justifyContent: 'center' }}>
             <CircularProgress color='primary' />
           </Box>
