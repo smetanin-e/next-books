@@ -28,8 +28,13 @@ export const HeaderSearch = () => {
   useClickAway(ref, () => setFocus(false));
 
   useDebounce(
-    () => {
-      Api.products.search(value).then((items) => setProducts(items));
+    async () => {
+      try {
+        const response = await Api.products.search(value);
+        setProducts(response);
+      } catch (error) {
+        console.error(error);
+      }
     },
     500,
     [value],
