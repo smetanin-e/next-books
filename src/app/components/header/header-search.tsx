@@ -13,6 +13,7 @@ export const HeaderSearch = () => {
   const [value, setValue] = React.useState('');
   const [focus, setFocus] = React.useState(false);
   const [products, setProducts] = React.useState<Book[]>([]);
+  const [loading, setLoading] = React.useState(true);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
@@ -30,10 +31,13 @@ export const HeaderSearch = () => {
   useDebounce(
     async () => {
       try {
+        setLoading(true);
         const response = await Api.products.search(value);
         setProducts(response);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     },
     500,
@@ -69,7 +73,12 @@ export const HeaderSearch = () => {
           }}
         />
         {focus && products.length > 0 && (
-          <SearchResultPrev cleareInput={cleareInput} products={products} value={value} />
+          <SearchResultPrev
+            loading={loading}
+            cleareInput={cleareInput}
+            products={products}
+            value={value}
+          />
         )}
       </SearchContainer>
     </>
