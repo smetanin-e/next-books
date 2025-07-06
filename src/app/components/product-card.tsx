@@ -13,14 +13,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import React from 'react';
 import { ProductCardContainer } from '@/styles';
+import { Book } from '@prisma/client';
 
 type BookType = {
-  book: {
-    imageUrl: string;
-    title: string;
-    price: string;
-    sale?: number;
-  };
+  book: Book;
 };
 
 export const ProductCard = ({ book }: BookType) => {

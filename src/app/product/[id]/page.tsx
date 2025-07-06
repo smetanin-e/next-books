@@ -1,17 +1,16 @@
 import { Box, Breadcrumbs, Container, Paper, Stack, Typography } from '@mui/material';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Link from 'next/link';
-// import { BookGridContainer, StyledAboutContainer } from '@/styles/bookPage';
+import { RatingSummary } from '@/app/components/product/rating-summary';
+import { BookGridContainer, StyledAboutContainer } from '@/styles/product-page';
+import { ProductImage } from '@/app/components/product/product-image';
+import { ProductAbout } from '@/app/components/product/product-about';
+import { ReadMoreLink } from '@/app/components/read-more-link';
+import { ProductCharacteristics } from '@/app/components/product/product-characteristics';
+import { PriceInfo } from '@/app/components/product/price-info';
+import { ProductRating } from '@/app/components/product/product-rating';
+import { ProductReviews } from '@/app/components/product/product-reviews';
 
-// import { PriceInfo } from '@/components/share/BookPage/priceInfo';
-// import { ImageContainer } from '@/components/share/BookPage/bookImage';
-// import { BookAbout } from '@/components/share/BookPage/bookAbout';
-// import { ReadMore } from '@/components/share/BookPage/readMore';
-// import { BookCharacteristics } from '@/components/share/BookPage/bookCharacteristics';
-
-// import { RatingSummary } from '@/components/share/BookPage/ratingSummary';
-// import { BookReviews } from '@/components/share/BookPage/bookReviews';
-// import { BookRating } from '@/components/share/BookPage/bookRating';
 export default async function ProductsDetails({ params }: { params: Promise<{ id: number }> }) {
   const productId = (await params).id;
   const breadcrumbs = ['Главная', 'Детские книги', 'Сказки'];
@@ -20,7 +19,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
   return (
     <>
       <h1>Details about product {productId}</h1>
-      {/* <Container>
+      <Container>
         <Stack spacing={2} mb={2}>
           <Breadcrumbs separator={<KeyboardDoubleArrowRightIcon />} aria-label='breadcrumb'>
             {breadcrumbs.map((item) => (
@@ -35,7 +34,6 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
         </Typography>
         <RatingSummary />
 
-     
         <BookGridContainer>
           <Box
             sx={{
@@ -46,7 +44,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
               order: { lg: 1 },
             }}
           >
-            <ImageContainer
+            <ProductImage
               heigth={420}
               src={
                 'https://content.img-gorod.ru/pim/products/images/8d/14/0196ae94-8845-735f-ba96-5fe38c328d14.jpg?width=608&height=867&fit=bounds'
@@ -64,10 +62,10 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
           >
             <Paper elevation={3} sx={{ position: 'relative', p: 2 }}>
               <StyledAboutContainer>
-                <BookAbout />
+                <ProductAbout />
               </StyledAboutContainer>
 
-              <ReadMore />
+              <ReadMoreLink />
             </Paper>
           </Box>
 
@@ -81,9 +79,9 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
           >
             <Paper elevation={3} sx={{ position: 'relative', p: 2 }}>
               <StyledAboutContainer>
-                <BookCharacteristics />
+                <ProductCharacteristics />
               </StyledAboutContainer>
-              <ReadMore />
+              <ReadMoreLink />
             </Paper>
           </Box>
 
@@ -106,14 +104,14 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
               order: { lg: 5, sm: 3, xs: 5 },
             }}
           >
-            <BookRating />
+            <ProductRating />
           </Box>
         </BookGridContainer>
 
-        <BookReviews />
-        <BookAbout />
-        <BookCharacteristics /> 
-      </Container> */}
+        <ProductReviews />
+        <ProductAbout />
+        <ProductCharacteristics />
+      </Container>
     </>
   );
 }

@@ -1,4 +1,4 @@
-
+'use client'
 
 import { Box, IconButton, Stack, styled, Typography } from "@mui/material"
 

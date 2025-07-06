@@ -11,7 +11,7 @@ import { Book } from '@prisma/client';
 
 export const HeaderSearch = () => {
   const [value, setValue] = React.useState('');
-  const [focus, setFocus] = React.useState(false);
+  const [focused, setFocused] = React.useState(false);
   const [products, setProducts] = React.useState<Book[]>([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -21,12 +21,12 @@ export const HeaderSearch = () => {
 
   const cleareInput = () => {
     setValue('');
-    setFocus(false);
+    setFocused(false);
     setProducts([]);
   };
 
   const ref = React.useRef(null);
-  useClickAway(ref, () => setFocus(false));
+  useClickAway(ref, () => setFocused(false));
 
   useDebounce(
     async () => {
@@ -46,7 +46,7 @@ export const HeaderSearch = () => {
 
   return (
     <>
-      {focus && <SearchOverlay />}
+      {focused && <SearchOverlay />}
 
       <SearchContainer ref={ref}>
         <TextField
@@ -57,7 +57,7 @@ export const HeaderSearch = () => {
           variant='outlined'
           value={value}
           onChange={handleInputChange}
-          onFocus={() => setFocus(true)}
+          onFocus={() => setFocused(true)}
           slotProps={{
             input: {
               endAdornment: (
@@ -72,7 +72,7 @@ export const HeaderSearch = () => {
             },
           }}
         />
-        {focus && products.length > 0 && (
+        {focused && products.length > 0 && (
           <SearchResultPrev
             loading={loading}
             cleareInput={cleareInput}

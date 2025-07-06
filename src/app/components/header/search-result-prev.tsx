@@ -13,8 +13,6 @@ interface Props {
 }
 
 export const SearchResultPrev: React.FC<Props> = ({ value, products, cleareInput, loading }) => {
-  console.log(products);
-
   return (
     <Box zIndex={1} position={'absolute'} top={'100%'} left={0} width={'100%'}>
       {value && (
