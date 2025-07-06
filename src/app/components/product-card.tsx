@@ -14,6 +14,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import React from 'react';
 import { ProductCardContainer } from '@/styles';
 import { Book } from '@prisma/client';
+import Link from 'next/link';
 
 type BookType = {
   book: Book;
@@ -73,10 +74,11 @@ export const ProductCard = ({ book }: BookType) => {
               </>
             )}
           </Stack>
-
-          <Typography sx={{ flexGrow: 1 }} variant='body1' component='h2'>
-            {book.title.length > 20 ? book.title.slice(0, 20) + '...' : book.title}
-          </Typography>
+          <Link href={`/product/${book.id}`}>
+            <Typography sx={{ flexGrow: 1 }} variant='body1' component='h2'>
+              {book.title.length > 20 ? book.title.slice(0, 20) + '...' : book.title}
+            </Typography>
+          </Link>
         </CardContent>
 
         <CardActions sx={{ justifyContent: 'space-between' }}>

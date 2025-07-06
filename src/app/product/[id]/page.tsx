@@ -10,9 +10,18 @@ import { ProductCharacteristics } from '@/app/components/product/product-charact
 import { PriceInfo } from '@/app/components/product/price-info';
 import { ProductRating } from '@/app/components/product/product-rating';
 import { ProductReviews } from '@/app/components/product/product-reviews';
+import { prisma } from '../../../../prisma/prisma-client';
+import { notFound } from 'next/navigation';
 
 export default async function ProductsDetails({ params }: { params: Promise<{ id: number }> }) {
   const productId = (await params).id;
+  const product = await prisma.book.findFirst({ where: { id: Number(productId) } });
+  console.log(product);
+
+  if (!product) {
+    return notFound();
+  }
+
   const breadcrumbs = ['Главная', 'Детские книги', 'Сказки'];
 
   //xs-0 sm-600 md-900 lg-1200 xl-1536
@@ -30,7 +39,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
           </Breadcrumbs>
         </Stack>
         <Typography variant='h5' component='h1' paddingBlockEnd={2}>
-          Поднятие уровня в одиночку. Книга 8 (Solo Leveling). Новелла
+          {product.title}
         </Typography>
         <RatingSummary />
 
@@ -44,12 +53,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
               order: { lg: 1 },
             }}
           >
-            <ProductImage
-              heigth={420}
-              src={
-                'https://content.img-gorod.ru/pim/products/images/8d/14/0196ae94-8845-735f-ba96-5fe38c328d14.jpg?width=608&height=867&fit=bounds'
-              }
-            />
+            <ProductImage heigth={420} src={product.imageUrl} />
           </Box>
 
           <Box
@@ -62,7 +66,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
           >
             <Paper elevation={3} sx={{ position: 'relative', p: 2 }}>
               <StyledAboutContainer>
-                <ProductAbout />
+                <ProductAbout about={product.description} />
               </StyledAboutContainer>
 
               <ReadMoreLink />
@@ -93,7 +97,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
               order: { lg: 3, sm: 2, xs: 2 },
             }}
           >
-            <PriceInfo />
+            <PriceInfo price={product.price} sale={product.sale} />
           </Box>
 
           <Box
@@ -109,7 +113,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
         </BookGridContainer>
 
         <ProductReviews />
-        <ProductAbout />
+        <ProductAbout about={product.description} />
         <ProductCharacteristics />
       </Container>
     </>

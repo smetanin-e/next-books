@@ -7,7 +7,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { PriceContainer } from '@/styles/product-page';
 
-export const PriceInfo = () => {
+interface PriceInfoProps {
+  price: number;
+  sale?: number;
+}
+export const PriceInfo = ({ price, sale }: PriceInfoProps) => {
   return (
     <PriceContainer elevation={2}>
       <Box p={2}>
@@ -23,9 +27,16 @@ export const PriceInfo = () => {
         </Typography>
 
         <Stack direction={'row'} spacing={2} alignItems={'center'} paddingBlockEnd={2}>
-          <Typography variant='body2' color='textDisabled' sx={{ textDecoration: 'line-through' }}>
-            919 ₽
-          </Typography>
+          {sale && (
+            <Typography
+              variant='body2'
+              color='textDisabled'
+              sx={{ textDecoration: 'line-through' }}
+            >
+              {Math.ceil(price / (1 - sale / 100))} ₽
+            </Typography>
+          )}
+
           <Typography
             color='secondary'
             variant='body1'
@@ -33,20 +44,23 @@ export const PriceInfo = () => {
             fontSize={22} //18
             sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}
           >
-            720 ₽ <AccountBalanceWalletIcon />
+            {price} ₽ <AccountBalanceWalletIcon />
           </Typography>
-          <Stack
-            alignItems={'center'}
-            justifyContent={'center'}
-            bgcolor='#FE6564'
-            color='#fff'
-            p={'5px 5px'}
-            borderRadius={'5px'}
-          >
-            <Typography fontSize={14} fontWeight={'bold'} lineHeight={1}>
-              -35%
-            </Typography>
-          </Stack>
+
+          {sale && (
+            <Stack
+              alignItems={'center'}
+              justifyContent={'center'}
+              bgcolor='#FE6564'
+              color='#fff'
+              p={'5px 5px'}
+              borderRadius={'5px'}
+            >
+              <Typography fontSize={14} fontWeight={'bold'} lineHeight={1}>
+                -{sale}%
+              </Typography>
+            </Stack>
+          )}
         </Stack>
         <Stack
           direction='row'

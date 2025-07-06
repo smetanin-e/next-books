@@ -8,7 +8,7 @@ type ImageContainerProps = {
 
 export const ProductImage = ({ src, heigth }: ImageContainerProps) => {
   return (
-    <ImageContainer>
+    <ImageContainer width={'100%'}>
       <StyledImage height={heigth} src={src} alt='image' />
     </ImageContainer>
   );
