@@ -38,7 +38,8 @@ export const tags = [
 
 export const ratings = [
     {ONE: 1, TWO: 0, THREE: 4, FOUR:12, FIVE: 65, bookId: 1},
-    { bookId: 2}
+    { bookId: 2},
+    {ONE: 2, TWO: 4, THREE: 12, FOUR:64, FIVE: 80, bookId: 3},
 ]
 
 
@@ -55,6 +56,7 @@ export const books = [
     price: 300,
     categoryId: 1,
     subcategoryId: 4,
+    
   },
   {
     imageUrl:
@@ -66,6 +68,7 @@ export const books = [
     price: 600,
     categoryId: 1,
     subcategoryId: 4,
+    
      
   },
  {
@@ -79,6 +82,7 @@ export const books = [
     categoryId: 2,
     subcategoryId: 7,
     sale: 30,
+    
      
   },
 ]

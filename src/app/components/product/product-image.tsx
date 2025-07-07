@@ -4,11 +4,12 @@ import React from 'react';
 type ImageContainerProps = {
   src: string;
   heigth: number;
+  maxWidth: number;
 };
 
-export const ProductImage = ({ src, heigth }: ImageContainerProps) => {
+export const ProductImage = ({ maxWidth, src, heigth }: ImageContainerProps) => {
   return (
-    <ImageContainer width={'100%'}>
+    <ImageContainer maxWidth={maxWidth}>
       <StyledImage height={heigth} src={src} alt='image' />
     </ImageContainer>
   );

@@ -12,15 +12,20 @@ import { ProductRating } from '@/app/components/product/product-rating';
 import { ProductReviews } from '@/app/components/product/product-reviews';
 import { prisma } from '../../../../prisma/prisma-client';
 import { notFound } from 'next/navigation';
+import { totalRating } from '@/ui/totalRating';
 
-export default async function ProductsDetails({ params }: { params: Promise<{ id: number }> }) {
+export default async function Product({ params }: { params: Promise<{ id: number }> }) {
   const productId = (await params).id;
-  const product = await prisma.book.findFirst({ where: { id: Number(productId) } });
-  console.log(product);
+  const product = await prisma.book.findFirst({
+    where: { id: Number(productId) },
+    include: { rating: true },
+  });
 
   if (!product) {
     return notFound();
   }
+  const ratingInfo = totalRating(product.rating!);
+  console.log(ratingInfo);
 
   const breadcrumbs = ['Главная', 'Детские книги', 'Сказки'];
 
@@ -41,7 +46,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
         <Typography variant='h5' component='h1' paddingBlockEnd={2}>
           {product.title}
         </Typography>
-        <RatingSummary />
+        <RatingSummary ratingInfo={ratingInfo} />
 
         <BookGridContainer>
           <Box
@@ -53,7 +58,7 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
               order: { lg: 1 },
             }}
           >
-            <ProductImage heigth={420} src={product.imageUrl} />
+            <ProductImage maxWidth={273} heigth={420} src={product.imageUrl} />
           </Box>
 
           <Box
@@ -108,7 +113,9 @@ export default async function ProductsDetails({ params }: { params: Promise<{ id
               order: { lg: 5, sm: 3, xs: 5 },
             }}
           >
-            <ProductRating />
+            {product.rating != null && (
+              <ProductRating ratingInfo={ratingInfo} rating={product.rating} />
+            )}
           </Box>
         </BookGridContainer>
 

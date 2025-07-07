@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, IconButton, Stack, styled, Typography } from "@mui/material"
+import Link from "next/link"
 
 export const ActionsContainer  = styled(Stack)(({theme}) => ({
 
@@ -51,3 +52,18 @@ export const StyledImage = styled('img')({
   objectFit: 'cover', 
 });
 
+export const StyledLink = styled(Link)({
+ textDecoration: 'none',
+ 
+//  "&:hover": {
+//    background: 'red',
+//   },
+});
+
+export const HoveredStack = styled(Stack)({
+ 
+ transition: 'background-color 0.4s',
+ "&:hover": {
+   background: '#f3f3f3',
+  },
+});

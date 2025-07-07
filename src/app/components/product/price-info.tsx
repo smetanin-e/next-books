@@ -9,7 +9,7 @@ import { PriceContainer } from '@/styles/product-page';
 
 interface PriceInfoProps {
   price: number;
-  sale?: number;
+  sale?: number | null;
 }
 export const PriceInfo = ({ price, sale }: PriceInfoProps) => {
   return (

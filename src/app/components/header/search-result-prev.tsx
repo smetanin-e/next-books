@@ -1,7 +1,7 @@
-import { ImageContainer, StyledImage } from '@/styles';
-import { Box, CircularProgress, Divider, Grow, Paper, Stack, Typography } from '@mui/material';
+import { HoveredStack, ImageContainer, StyledImage, StyledLink } from '@/styles';
+import { Box, CircularProgress, Divider, Grow, Paper, Typography } from '@mui/material';
 import { Book } from '@prisma/client';
-import Link from 'next/link';
+
 import React from 'react';
 
 interface Props {
@@ -16,21 +16,21 @@ export const SearchResultPrev: React.FC<Props> = ({ value, products, cleareInput
   return (
     <Box zIndex={1} position={'absolute'} top={'100%'} left={0} width={'100%'}>
       {value && (
-        <Paper elevation={2} sx={{ mt: 1, p: 1 }}>
+        <Paper elevation={2} sx={{ mt: 1 }}>
           {loading ? (
             <Box pt={1} width={'100%'} sx={{ display: 'flex', justifyContent: 'center' }}>
               <CircularProgress color='primary' />
             </Box>
           ) : (
             products.map((obj) => (
-              <Link key={obj.id} href={`/product/${obj.id}`} onClick={cleareInput}>
+              <StyledLink key={obj.id} href={`/product/${obj.id}`} onClick={cleareInput}>
                 <Grow
                   in={!!value}
                   style={{ transformOrigin: '0 0 0' }}
                   {...(!!value ? { timeout: 1000 } : {})}
                 >
                   <Box>
-                    <Stack direction={'row'} spacing={2} paddingBlock={1}>
+                    <HoveredStack paddingInline={1} direction={'row'} spacing={2} paddingBlock={1}>
                       <ImageContainer>
                         <StyledImage height={'70px'} src={obj.imageUrl} />
                       </ImageContainer>
@@ -42,11 +42,11 @@ export const SearchResultPrev: React.FC<Props> = ({ value, products, cleareInput
                           {obj.description.slice(0, 80) + '...'}
                         </Typography>
                       </Box>
-                    </Stack>
+                    </HoveredStack>
                     <Divider />
                   </Box>
                 </Grow>
-              </Link>
+              </StyledLink>
             ))
           )}
           {/* <Grow

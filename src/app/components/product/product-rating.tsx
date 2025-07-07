@@ -1,8 +1,26 @@
-import { Box, LinearProgress, Paper, Rating, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  LinearProgress,
+  Paper,
+  Rating as RatingContainer,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { Rating } from '@prisma/client';
+
 import React from 'react';
 
-export const ProductRating = () => {
-  const totalValue = 105;
+interface Props {
+  rating: Rating;
+  ratingInfo: {
+    totalValue: number;
+    totalCount: number;
+  };
+}
+
+export const ProductRating = ({ rating, ratingInfo }: Props) => {
+  //   ratingInfo.totalCount
+  //   ratingInfo.totalValue
 
   return (
     <Paper elevation={3} sx={{ height: '200px' }}>
@@ -15,57 +33,78 @@ export const ProductRating = () => {
           paddingBlockEnd={1}
         >
           <Typography variant='body2'>
-            <b>4.4</b>
+            <b>{ratingInfo.totalValue}</b>
           </Typography>
-          <Rating size='small' name='read-only' value={4.4} readOnly precision={0.5} />
+          <RatingContainer
+            size='small'
+            name='read-only'
+            value={ratingInfo.totalCount}
+            readOnly
+            precision={0.5}
+          />
           <Typography variant='body2'>
-            <b>105</b> оценок
+            оценок: <b>{ratingInfo.totalCount}</b>
           </Typography>
         </Stack>
 
         <Stack direction='row' spacing={2} alignItems='center'>
-          <Rating name='read-only' value={5} readOnly />
+          <RatingContainer name='read-only' value={5} readOnly />
           <Box sx={{ width: '100%' }}>
-            <LinearProgress variant='determinate' value={(70 / totalValue) * 100} />
+            <LinearProgress
+              variant='determinate'
+              value={(rating.FIVE / ratingInfo.totalCount) * 100}
+            />
           </Box>
           <Typography variant='body1' textAlign='center'>
-            70
+            {rating.FIVE}
           </Typography>
         </Stack>
         <Stack direction='row' spacing={2} alignItems='center'>
-          <Rating name='read-only' value={4} readOnly />
+          <RatingContainer name='read-only' value={4} readOnly />
           <Box sx={{ width: '100%' }}>
-            <LinearProgress variant='determinate' value={(19 / totalValue) * 100} />
+            <LinearProgress
+              variant='determinate'
+              value={(rating.FOUR / ratingInfo.totalCount) * 100}
+            />
           </Box>
           <Typography variant='body1' textAlign='center'>
-            19
+            {rating.FOUR}
           </Typography>
         </Stack>
         <Stack direction='row' spacing={2} alignItems='center'>
-          <Rating name='read-only' value={3} readOnly />
+          <RatingContainer name='read-only' value={3} readOnly />
           <Box sx={{ width: '100%' }}>
-            <LinearProgress variant='determinate' value={(11 / totalValue) * 100} />
+            <LinearProgress
+              variant='determinate'
+              value={(rating.THREE / ratingInfo.totalCount) * 100}
+            />
           </Box>
           <Typography variant='body1' textAlign='center'>
-            11
+            {rating.THREE}
           </Typography>
         </Stack>
         <Stack direction='row' spacing={2} alignItems='center'>
-          <Rating name='read-only' value={2} readOnly />
+          <RatingContainer name='read-only' value={2} readOnly />
           <Box sx={{ width: '100%' }}>
-            <LinearProgress variant='determinate' value={(3 / totalValue) * 100} />
+            <LinearProgress
+              variant='determinate'
+              value={(rating.TWO / ratingInfo.totalCount) * 100}
+            />
           </Box>
           <Typography variant='body1' textAlign='center'>
-            3
+            {rating.TWO}
           </Typography>
         </Stack>
         <Stack direction='row' spacing={2} alignItems='center'>
-          <Rating name='read-only' value={1} readOnly />
+          <RatingContainer name='read-only' value={1} readOnly />
           <Box sx={{ width: '100%' }}>
-            <LinearProgress variant='determinate' value={(2 / totalValue) * 100} />
+            <LinearProgress
+              variant='determinate'
+              value={(rating.ONE / ratingInfo.totalCount) * 100}
+            />
           </Box>
           <Typography variant='body1' textAlign='center'>
-            2
+            {rating.ONE}
           </Typography>
         </Stack>
       </Box>
