@@ -1,10 +1,10 @@
 import { axiosInstance } from "./instance"
 import { ApiRoutes } from "./constants"
-import { SubCategory } from "@prisma/client";
+import { Tag } from "@prisma/client";
 
 
-export const getSubCategories = async():Promise<SubCategory[]> => {
-    const {data} = await axiosInstance.get<SubCategory[]>(ApiRoutes.SUBCATEGORIES)
+export const getTags = async():Promise<Tag[]> => {
+    const {data} = await axiosInstance.get<Tag[]>(ApiRoutes.TAGS)
 
     
     return data

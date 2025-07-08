@@ -13,9 +13,18 @@ export const CategoriesDrawer = () => {
   const anchor = match ? 'top' : 'left';
   const { drawerOpen, setDrawerOpen } = useAppDrawerStore((state) => state);
 
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setDrawerOpen(newOpen);
+  };
+
   return (
     <ThemeProvider theme={CustomTheme}>
-      <Drawer anchor={anchor} open={drawerOpen} sx={{ position: 'relative' }}>
+      <Drawer
+        anchor={anchor}
+        open={drawerOpen}
+        sx={{ position: 'relative' }}
+        onClose={toggleDrawer(false)}
+      >
         {drawerOpen && (
           <IconButton
             size='large'

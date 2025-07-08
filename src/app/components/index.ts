@@ -14,6 +14,7 @@ export {ReadMoreLink} from './read-more-link'
 export {Review} from './review'
 export {SearchResult} from './search-result'
 export {Search} from './search'
+export {ProductsContent} from './products-content'
 
 
 

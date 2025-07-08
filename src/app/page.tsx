@@ -9,7 +9,6 @@ export default async function Home() {
       books: true,
     },
   });
-  console.log(tags);
 
   return <HomeContent items={tags} />;
 }

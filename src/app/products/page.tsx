@@ -1,5 +1,7 @@
-import { Typography } from '@mui/material';
+import { prisma } from '../../../prisma/prisma-client';
+import { ProductsContent } from '../components';
 
-export default function Products() {
-  return <Typography>Новинки </Typography>;
+export default async function Products() {
+  const books = await prisma.book.findMany();
+  return <ProductsContent items={books} />;
 }
