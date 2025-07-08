@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, IconButton, Stack, styled, Typography } from "@mui/material"
+import { Box, Container, IconButton, Stack, styled, Typography } from "@mui/material"
 import Link from "next/link"
 
 export const ActionsContainer  = styled(Stack)(({theme}) => ({
@@ -67,3 +67,13 @@ export const HoveredStack = styled(Stack)({
    background: '#f3f3f3',
   },
 });
+
+
+export const StyledContainer  = styled(Container)(({theme}) => ({
+    padding: '16px',
+   [theme.breakpoints.down('md')]: {
+          padding: '10px',
+        },
+
+}))
+

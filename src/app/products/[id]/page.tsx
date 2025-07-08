@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Container, Paper, Stack, Typography } from '@mui/material';
+import { Box, Breadcrumbs, Paper, Stack, Typography } from '@mui/material';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Link from 'next/link';
 
@@ -17,6 +17,7 @@ import {
 import { prisma } from '../../../../prisma/prisma-client';
 import { notFound } from 'next/navigation';
 import { totalRating } from '@/ui/totalRating';
+import { StyledContainer } from '@/styles';
 
 export default async function Product({ params }: { params: Promise<{ id: number }> }) {
   const productId = (await params).id;
@@ -37,7 +38,7 @@ export default async function Product({ params }: { params: Promise<{ id: number
   return (
     <>
       <h1>Details about product {productId}</h1>
-      <Container>
+      <StyledContainer>
         <Stack spacing={2} mb={2}>
           <Breadcrumbs separator={<KeyboardDoubleArrowRightIcon />} aria-label='breadcrumb'>
             {breadcrumbs.map((item) => (
@@ -126,7 +127,7 @@ export default async function Product({ params }: { params: Promise<{ id: number
         <ProductReviews />
         <ProductAbout about={product.description} />
         <ProductCharacteristics />
-      </Container>
+      </StyledContainer>
     </>
   );
 }

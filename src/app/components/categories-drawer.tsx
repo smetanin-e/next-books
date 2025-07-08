@@ -1,8 +1,7 @@
 'use client';
 import CloseIcon from '@mui/icons-material/Close';
-import CustomTheme from '@/styles/theme';
 
-import { Drawer, IconButton, ThemeProvider, useMediaQuery, useTheme } from '@mui/material';
+import { Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material';
 
 import { useAppDrawerStore } from '@/store/appDrawer';
 import { Categories, Menu } from '../components';
@@ -18,27 +17,25 @@ export const CategoriesDrawer = () => {
   };
 
   return (
-    <ThemeProvider theme={CustomTheme}>
-      <Drawer
-        anchor={anchor}
-        open={drawerOpen}
-        sx={{ position: 'relative' }}
-        onClose={toggleDrawer(false)}
-      >
-        {drawerOpen && (
-          <IconButton
-            size='large'
-            sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 2 }}
-            onClick={() => setDrawerOpen(false)}
-          >
-            <CloseIcon />
-          </IconButton>
-        )}
+    <Drawer
+      anchor={anchor}
+      open={drawerOpen}
+      sx={{ position: 'relative' }}
+      onClose={toggleDrawer(false)}
+    >
+      {drawerOpen && (
+        <IconButton
+          size='large'
+          sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 2 }}
+          onClick={() => setDrawerOpen(false)}
+        >
+          <CloseIcon />
+        </IconButton>
+      )}
 
-        {match && <Menu />}
+      {match && <Menu />}
 
-        <Categories />
-      </Drawer>
-    </ThemeProvider>
+      <Categories />
+    </Drawer>
   );
 };

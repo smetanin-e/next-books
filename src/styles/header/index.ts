@@ -2,6 +2,13 @@
 
 import { Box, List, Stack, styled } from "@mui/material"
 
+export const HeaderLayout = styled(Box)(({theme}) => ({
+    paddingBlockEnd:"150px",
+    [theme.breakpoints.down('md')]: {
+       paddingBlockEnd:"60px",
+    }
+}))
+
 export const HeaderContainer = styled(Stack)(({theme}) => ({
     width:'100%',
     justifyContent:'space-between',

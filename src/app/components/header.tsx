@@ -1,10 +1,9 @@
 'use client';
 import React from 'react';
 import logo from '../../../public/logo.png'; // ИСПРАВИТЬ
-import { AppBar, Box, Container, ThemeProvider, useMediaQuery, useTheme } from '@mui/material';
-import CustomTheme from '@/styles/theme';
+import { AppBar, Container, useMediaQuery, useTheme } from '@mui/material';
 
-import { HeaderContainer, HeaderLogo } from '@/styles/header';
+import { HeaderContainer, HeaderLayout, HeaderLogo } from '@/styles/header';
 
 import Link from 'next/link';
 import { Actions, Navigation, Search } from '../components';
@@ -18,30 +17,26 @@ interface Props {
 export const Header: React.FC<Props> = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.up('md'));
-  //const spacing = match ? 4 : 1;
-  const responsePadding = match ? '150px' : '60px';
-  return (
-    <ThemeProvider theme={CustomTheme}>
-      <Box paddingBlockEnd={responsePadding}>
-        <AppBar
-          sx={{ paddingBlock: '8px', mb: 1, zIndex: '20', width: '100%' }}
-          color='inherit'
-          position='fixed'
-        >
-          <Container>
-            <HeaderContainer direction='row'>
-              <Link href={'/'}>
-                <HeaderLogo alt='logo' src={logo.src} />
-              </Link>
-              <Search />
-              {match && <Actions />}
-            </HeaderContainer>
 
-            <Navigation />
-          </Container>
-        </AppBar>
-        {/* <AppDrawer /> */}
-      </Box>
-    </ThemeProvider>
+  return (
+    <HeaderLayout>
+      <AppBar
+        sx={{ paddingBlock: '8px', mb: 1, zIndex: '20', width: '100%' }}
+        color='inherit'
+        position='fixed'
+      >
+        <Container>
+          <HeaderContainer direction='row'>
+            <Link href={'/'}>
+              <HeaderLogo alt='logo' src={logo.src} />
+            </Link>
+            <Search />
+            {match && <Actions />}
+          </HeaderContainer>
+
+          <Navigation />
+        </Container>
+      </AppBar>
+    </HeaderLayout>
   );
 };
