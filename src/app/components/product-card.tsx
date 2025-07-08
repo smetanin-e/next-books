@@ -1,20 +1,12 @@
 'use client';
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  IconButton,
-  Stack,
-} from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Stack } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import React from 'react';
 import { ProductCardContainer } from '@/styles';
 import { Book } from '@prisma/client';
 import Link from 'next/link';
+import { CardButtons } from '../components';
 
 type BookType = {
   book: Book;
@@ -74,28 +66,14 @@ export const ProductCard = ({ book }: BookType) => {
               </>
             )}
           </Stack>
-          <Link href={`/product/${book.id}`} style={{ textDecoration: 'none' }}>
+          <Link href={`/products/${book.id}`} style={{ textDecoration: 'none' }}>
             <Typography sx={{ flexGrow: 1 }} variant='body1' component='h2'>
               {book.title.length > 20 ? book.title.slice(0, 20) + '...' : book.title}
             </Typography>
           </Link>
         </CardContent>
 
-        <CardActions sx={{ justifyContent: 'space-between' }}>
-          <Button size='small'>в корзину</Button>
-          <IconButton
-            sx={{
-              // position: 'absolute',
-              // right: '8px',
-              // top: '8px',
-              zIndex: 2,
-              bgcolor: '#fff',
-            }}
-            size='small'
-          >
-            <FavoriteIcon />
-          </IconButton>
-        </CardActions>
+        <CardButtons buttonVariant='outlined' text={'в корзину'} />
       </Card>
     </ProductCardContainer>
   );

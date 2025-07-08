@@ -5,11 +5,11 @@ import { useClickAway, useDebounce } from 'react-use';
 import CloseIcon from '@mui/icons-material/Close';
 import { TextField, IconButton } from '@mui/material';
 import { SearchContainer, SearchOverlay } from '@/styles/header';
-import { SearchResultPrev } from './search-result-prev';
-import { Api } from '../../../../services/api-clients';
+import { Api } from '../../../services/api-clients';
 import { Book } from '@prisma/client';
+import { SearchResult } from '../components';
 
-export const HeaderSearch = () => {
+export const Search = () => {
   const [value, setValue] = React.useState('');
   const [focused, setFocused] = React.useState(false);
   const [products, setProducts] = React.useState<Book[]>([]);
@@ -73,7 +73,7 @@ export const HeaderSearch = () => {
           }}
         />
         {focused && products.length > 0 && (
-          <SearchResultPrev
+          <SearchResult
             loading={loading}
             cleareInput={cleareInput}
             products={products}

@@ -1,10 +1,12 @@
+'use client';
 import { Box, Button, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { HeaderLinks } from './header-links';
+import { Menu } from '../components';
 import { useAppDrawerStore } from '@/store/appDrawer';
-export const HeaderNav = () => {
+
+export const Navigation = () => {
   const setDrawerOpen = useAppDrawerStore((state) => state.setDrawerOpen);
 
   const theme = useTheme();
@@ -22,7 +24,7 @@ export const HeaderNav = () => {
         </Button>
       )}
 
-      {match && <HeaderLinks />}
+      {match && <Menu />}
     </Box>
   );
 };

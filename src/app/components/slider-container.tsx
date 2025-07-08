@@ -37,7 +37,7 @@ const CustomNextArrow: React.FC<CustomArrowProps> = ({ onClick }) => {
 type SliderProps = {
   children?: ReactNode;
 };
-export const ProductsSliderContainer = ({ children }: SliderProps) => {
+const ProductsSliderContainer = ({ children }: SliderProps) => {
   const settings = {
     dots: true,
     arrow: true,

@@ -1,14 +1,14 @@
 'use client';
 import React from 'react';
-import logo from '../../../../public/logo.png'; // ИСПРАВИТЬ
+import logo from '../../../public/logo.png'; // ИСПРАВИТЬ
 import { AppBar, Box, Container, ThemeProvider, useMediaQuery, useTheme } from '@mui/material';
 import CustomTheme from '@/styles/theme';
 
 import { HeaderContainer, HeaderLogo } from '@/styles/header';
-import { HeaderSearch } from './header-search';
-import { Actions } from '../actions';
-import { HeaderNav } from './header-nav';
+
 import Link from 'next/link';
+import { Actions, Navigation, Search } from '../components';
+
 //import { AppDrawer } from '../drawer';
 
 interface Props {
@@ -33,11 +33,11 @@ export const Header: React.FC<Props> = () => {
               <Link href={'/'}>
                 <HeaderLogo alt='logo' src={logo.src} />
               </Link>
-              <HeaderSearch />
+              <Search />
               {match && <Actions />}
             </HeaderContainer>
 
-            <HeaderNav />
+            <Navigation />
           </Container>
         </AppBar>
         {/* <AppDrawer /> */}

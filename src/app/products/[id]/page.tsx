@@ -1,15 +1,19 @@
 import { Box, Breadcrumbs, Container, Paper, Stack, Typography } from '@mui/material';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Link from 'next/link';
-import { RatingSummary } from '@/app/components/product/rating-summary';
+
 import { BookGridContainer, StyledAboutContainer } from '@/styles/product-page';
-import { ProductImage } from '@/app/components/product/product-image';
-import { ProductAbout } from '@/app/components/product/product-about';
-import { ReadMoreLink } from '@/app/components/read-more-link';
-import { ProductCharacteristics } from '@/app/components/product/product-characteristics';
-import { PriceInfo } from '@/app/components/product/price-info';
-import { ProductRating } from '@/app/components/product/product-rating';
-import { ProductReviews } from '@/app/components/product/product-reviews';
+import {
+  ProductAbout,
+  ProductActions,
+  ProductCharacteristics,
+  ProductImage,
+  ProductRating,
+  ProductReviews,
+  RatingSummary,
+  ReadMoreLink,
+} from '@/app/components';
+
 import { prisma } from '../../../../prisma/prisma-client';
 import { notFound } from 'next/navigation';
 import { totalRating } from '@/ui/totalRating';
@@ -102,7 +106,7 @@ export default async function Product({ params }: { params: Promise<{ id: number
               order: { lg: 3, sm: 2, xs: 2 },
             }}
           >
-            <PriceInfo price={product.price} sale={product.sale} />
+            <ProductActions price={product.price} sale={product.sale} />
           </Box>
 
           <Box

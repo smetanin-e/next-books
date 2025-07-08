@@ -11,10 +11,11 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { BoxContainer } from './products-box-container';
-import { SliderContainer } from './products-slider-container';
-import { ProductCard } from './product-card';
+
 import { Book } from '@prisma/client';
+import { ProductCard } from '../components';
+import { SliderContainer } from './slider-container';
+import { BoxContainer } from './box-container';
 
 interface ItemsByTag {
   id: number;

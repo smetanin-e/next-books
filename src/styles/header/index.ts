@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, List, Stack, styled } from "@mui/material"
 
 export const HeaderContainer = styled(Stack)(({theme}) => ({

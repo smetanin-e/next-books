@@ -1,14 +1,21 @@
 'use client';
 import React from 'react';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 
 import AutoStoriesRoundedIcon from '@mui/icons-material/AutoStoriesRounded';
 import HorizontalRuleRoundedIcon from '@mui/icons-material/HorizontalRuleRounded';
 
-import { Box, CircularProgress, Divider, Grow, styled, Typography } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Divider,
+  Grow,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  styled,
+  Typography,
+} from '@mui/material';
 
 import { useCatalog } from '../hooks/useCatalog';
 

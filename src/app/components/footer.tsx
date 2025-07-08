@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Actions } from './actions';
+import { Actions } from '../components';
 import { Box, Container, ThemeProvider, useMediaQuery, useTheme } from '@mui/material';
 import CustomTheme from '@/styles/theme';
 

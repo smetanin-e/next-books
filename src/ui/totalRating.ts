@@ -1,3 +1,8 @@
+/**
+ * 
+ */
+
+//TODO Нужно сделать этот код правильнее
 interface Props {
    
         ONE: number,

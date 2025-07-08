@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import './globals.css';
-import { AppDrawer, Footer, Header } from './components';
+import { CategoriesDrawer, Footer, Header } from './components';
 import { Box } from '@mui/material';
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function RootLayout({
         <Box sx={{ flexGrow: 1 }}>{children}</Box>
 
         <Footer />
-        <AppDrawer />
+        <CategoriesDrawer />
       </body>
     </html>
   );

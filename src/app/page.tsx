@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HomeContent } from './components/home-content';
+import { HomeContent } from './components';
 import { prisma } from '../../prisma/prisma-client';
 
 export default async function Home() {

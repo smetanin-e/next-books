@@ -12,7 +12,7 @@ interface Props {
   loading: boolean;
 }
 
-export const SearchResultPrev: React.FC<Props> = ({ value, products, cleareInput, loading }) => {
+export const SearchResult: React.FC<Props> = ({ value, products, cleareInput, loading }) => {
   return (
     <Box zIndex={1} position={'absolute'} top={'100%'} left={0} width={'100%'}>
       {value && (
@@ -23,7 +23,7 @@ export const SearchResultPrev: React.FC<Props> = ({ value, products, cleareInput
             </Box>
           ) : (
             products.map((obj) => (
-              <StyledLink key={obj.id} href={`/product/${obj.id}`} onClick={cleareInput}>
+              <StyledLink key={obj.id} href={`/products/${obj.id}`} onClick={cleareInput}>
                 <Grow
                   in={!!value}
                   style={{ transformOrigin: '0 0 0' }}

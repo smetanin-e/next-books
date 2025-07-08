@@ -1,5 +1,6 @@
 export enum ApiRoutes {
     SEARCH_PRODUCTS = 'products/search',
     CATEGORIES = 'categories',
-    SUBCATEGORIES = 'subcategories'
+    SUBCATEGORIES = 'subcategories',
+    TAGS = 'tags'
 }

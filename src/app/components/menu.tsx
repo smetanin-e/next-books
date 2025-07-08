@@ -2,7 +2,7 @@ import { HeaderList } from '@/styles/header';
 import { ListItemButton, ListItemText } from '@mui/material';
 import React from 'react';
 
-export const HeaderLinks = () => {
+export const Menu = () => {
   return (
     <HeaderList>
       <ListItemButton sx={{ paddingBlock: 0 }}>

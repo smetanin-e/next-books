@@ -3,11 +3,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import CustomTheme from '@/styles/theme';
 
 import { Drawer, IconButton, ThemeProvider, useMediaQuery, useTheme } from '@mui/material';
-import { Categories } from './categories';
-import { HeaderLinks } from './header/header-links';
-import { useAppDrawerStore } from '@/store/appDrawer';
 
-export const AppDrawer = () => {
+import { useAppDrawerStore } from '@/store/appDrawer';
+import { Categories, Menu } from '../components';
+
+export const CategoriesDrawer = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('md'));
   const anchor = match ? 'top' : 'left';
@@ -26,7 +26,7 @@ export const AppDrawer = () => {
           </IconButton>
         )}
 
-        {match && <HeaderLinks />}
+        {match && <Menu />}
 
         <Categories />
       </Drawer>

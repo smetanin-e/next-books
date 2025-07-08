@@ -25,6 +25,14 @@ export const ProductCharacteristics = () => {
       </Stack>
       <Stack direction='row' display='grid' gridTemplateColumns='2fr 1fr' paddingBlockEnd={1}>
         <Typography variant='body2' color='textSecondary'>
+          Автор
+        </Typography>
+        <Typography variant='body2' color='textSecondary'>
+          Автор
+        </Typography>
+      </Stack>
+      <Stack direction='row' display='grid' gridTemplateColumns='2fr 1fr' paddingBlockEnd={1}>
+        <Typography variant='body2' color='textSecondary'>
           Год издания
         </Typography>
         <Typography variant='body2' color='textSecondary'>

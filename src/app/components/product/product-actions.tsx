@@ -6,12 +6,13 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { PriceContainer } from '@/styles/product-page';
+import { CardButtons } from '..';
 
 interface PriceInfoProps {
   price: number;
   sale?: number | null;
 }
-export const PriceInfo = ({ price, sale }: PriceInfoProps) => {
+export const ProductActions = ({ price, sale }: PriceInfoProps) => {
   return (
     <PriceContainer elevation={2}>
       <Box p={2}>
@@ -62,24 +63,7 @@ export const PriceInfo = ({ price, sale }: PriceInfoProps) => {
             </Stack>
           )}
         </Stack>
-        <Stack
-          direction='row'
-          spacing={1}
-          justifyContent='space-between'
-          sx={{ paddingBlockStart: { sm: '2rem' } }}
-        >
-          <Button size='small' variant='contained'>
-            Добавить в корзину
-          </Button>
-          <IconButton
-            sx={{
-              zIndex: 2,
-              bgcolor: '#cecece',
-            }}
-          >
-            <FavoriteBorderIcon />
-          </IconButton>
-        </Stack>
+        <CardButtons buttonVariant='contained' text={'добавить в корзину'} />
       </Box>
     </PriceContainer>
   );
