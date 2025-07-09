@@ -63,7 +63,7 @@ export const Categories = () => {
           categories.map((category) => (
             <Box key={category.id}>
               <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>
-                <StyledLink href={`/test/category/${category.slug}`}>
+                <StyledLink href={`/products/category/${category.slug}`}>
                   <ListItemButton onClick={handleClick}>
                     <ListItemIcon>
                       <AutoStoriesRoundedIcon />
@@ -77,7 +77,7 @@ export const Categories = () => {
                 <Box key={subcategory.id}>
                   {category.id === subcategory.categoryId && (
                     <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>
-                      <StyledLink href={`/test/subcategory/${subcategory.slug}`}>
+                      <StyledLink href={`/products/subcategory/${subcategory.slug}`}>
                         <List component='div' disablePadding>
                           <ListItemButton sx={{ pl: 4 }} onClick={handleClick}>
                             <ListItemIcon>

@@ -66,7 +66,7 @@ export const ProductCard = ({ book }: BookType) => {
               </>
             )}
           </Stack>
-          <Link href={`/products/${book.id}`} style={{ textDecoration: 'none' }}>
+          <Link href={`/products/book/${book.id}`} style={{ textDecoration: 'none' }}>
             <Typography sx={{ flexGrow: 1 }} variant='body1' component='h2'>
               {book.title.length > 20 ? book.title.slice(0, 20) + '...' : book.title}
             </Typography>

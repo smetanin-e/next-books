@@ -23,7 +23,7 @@ export const SearchResult: React.FC<Props> = ({ value, products, cleareInput, lo
             </Box>
           ) : (
             products.map((obj) => (
-              <StyledLink key={obj.id} href={`/products/${obj.id}`} onClick={cleareInput}>
+              <StyledLink key={obj.id} href={`/products/book/${obj.id}`} onClick={cleareInput}>
                 <Grow
                   in={!!value}
                   style={{ transformOrigin: '0 0 0' }}
