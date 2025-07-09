@@ -1,5 +1,6 @@
 
 
+
 export const categories = [
     {name: "Хобби, досуг"},
     {name: "История"},

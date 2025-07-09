@@ -33,6 +33,7 @@ model User {
 model Category {
     id   Int    @id @default(autoincrement())
     name String @unique
+    slug String @unique
 
     subcategories SubCategory[]
 
@@ -42,6 +43,7 @@ model Category {
 model SubCategory {
     id   Int    @id @default(autoincrement())
     name String @unique
+    slug String @unique
 
     categoryId Int
     category   Category @relation(fields: [categoryId], references: [id])
@@ -52,6 +54,7 @@ model SubCategory {
 model Tag {
     id   Int    @id @default(autoincrement())
     name String @unique
+    slug String @unique
 
     books Book[]
 }

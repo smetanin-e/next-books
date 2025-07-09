@@ -21,7 +21,7 @@ export const Menu = () => {
         <Box>loading...</Box>
       ) : (
         tags.map((tag) => (
-          <StyledLink key={tag.id} href={'/products'}>
+          <StyledLink key={tag.id} href={`/test/tag/${tag.slug}`}>
             <ListItemButton sx={{ paddingBlock: 0 }} onClick={handleClick}>
               <ListItemText primary={tag.name} />
             </ListItemButton>

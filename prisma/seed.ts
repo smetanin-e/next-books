@@ -2,6 +2,8 @@ import { books, categories, ratings, subcategories, tags } from './constants';
 import {prisma} from './prisma-client'
 import { hashSync } from 'bcrypt'
 
+import slugify from 'slugify';
+
 async function generateData() {
     await prisma.user.createMany({
         data: [{
@@ -16,16 +18,34 @@ async function generateData() {
             role: 'ADMIN',
             verified: new Date()}]
     })
+ 
 
+    const categoriesWithSlugs = categories.map((category) => ({
+        ...category,
+        slug: slugify(category.name, {lower: true})
+    }))
     await prisma.category.createMany({
-        data: categories
+        data: categoriesWithSlugs,
+        skipDuplicates: true
     })
 
+
+    const subCategoriesWithSlugs = subcategories.map((subcategory) => ({
+        ...subcategory,
+        slug: slugify(subcategory.name, {lower: true})
+    }))
     await prisma.subCategory.createMany({
-        data: subcategories,
+        data: subCategoriesWithSlugs,
+        skipDuplicates: true
     })
+
+    const tagsWithSlugs = tags.map((tag) => ({
+        ...tag,
+        slug: slugify(tag.name, {lower: true})
+    }))
     await prisma.tag.createMany({
-        data: tags,
+        data: tagsWithSlugs,
+        skipDuplicates: true
     })
 
     
