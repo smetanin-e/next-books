@@ -1,6 +1,6 @@
 import {  Tag } from "@prisma/client"
 import React from "react"
-import { Api } from "../../../services/api-clients";
+import { Api } from "../../services/api-clients";
 
 interface ReturnProps {
     tags: Tag[]

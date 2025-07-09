@@ -73,7 +73,7 @@ export const HoveredStack = styled(Stack)({
 export const StyledContainer  = styled(Container)(({theme}) => ({
     padding: '16px',
    [theme.breakpoints.down('md')]: {
-          padding: '10px',
+          padding: '20px 10px',
         },
 
 }))

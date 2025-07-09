@@ -17,7 +17,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useCatalog } from '../hooks/useCatalog';
+import { useCatalog } from '../../hooks/useCatalog';
 import { StyledLink } from '@/styles';
 import { useAppDrawerStore } from '@/store/appDrawer';
 
@@ -53,6 +53,7 @@ export const Categories = () => {
         ) : (
           categories.map(
             (category) =>
+              category.books &&
               category.books.length > 0 && (
                 <Box key={category.id}>
                   <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>
@@ -68,6 +69,7 @@ export const Categories = () => {
                   <MiddleDivider />
                   {subcategories.map(
                     (subcategory) =>
+                      subcategory.books &&
                       subcategory.books.length > 0 && (
                         <Box key={subcategory.id}>
                           {category.id === subcategory.categoryId && (

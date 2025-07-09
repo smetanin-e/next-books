@@ -2,7 +2,7 @@
 import { HeaderList } from '@/styles/header';
 import { Box, ListItemButton, ListItemText } from '@mui/material';
 import React from 'react';
-import { useTags } from '../hooks/useTags';
+import { useTags } from '../../hooks/useTags';
 import { StyledLink } from '@/styles';
 
 export const Menu = () => {

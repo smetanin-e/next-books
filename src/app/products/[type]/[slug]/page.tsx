@@ -1,6 +1,6 @@
 import { Box, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
-import { fetchBooksFromParams } from '@/ui/fetchBooksFromParams';
+import { fetchBooksFromParams } from '@/lib/fetchBooksFromParams';
 import { StyledContainer } from '@/styles';
 import { ProductCard } from '@/app/components';
 

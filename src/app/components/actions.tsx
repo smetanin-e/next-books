@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import { Badge, useMediaQuery, useTheme } from '@mui/material';
-import { ActionsContainer, ActionsTypography, ActionIconButton } from '@/styles';
+import { ActionsContainer, ActionsTypography, ActionIconButton, StyledLink } from '@/styles';
 import { useAppDrawerStore } from '@/store/appDrawer';
 import Link from 'next/link';
 //import { useUIContext } from '@/context/ui';
@@ -37,13 +37,15 @@ export const Actions = () => {
           </ActionIconButton>
         </>
       )}
+      <StyledLink href={'/cart'}>
+        <ActionIconButton aria-label='cart'>
+          <Badge badgeContent={29} color='primary'>
+            <ShoppingCartIcon color='action' fontSize={iconSize} />
+          </Badge>
+          <ActionsTypography>Корзина</ActionsTypography>
+        </ActionIconButton>
+      </StyledLink>
 
-      <ActionIconButton aria-label='cart'>
-        <Badge badgeContent={29} color='primary'>
-          <ShoppingCartIcon color='action' fontSize={iconSize} />
-        </Badge>
-        <ActionsTypography>Корзина</ActionsTypography>
-      </ActionIconButton>
       <ActionIconButton aria-label='favorite'>
         <Badge badgeContent={1} color='primary'>
           <FavoriteIcon color='action' fontSize={iconSize} />

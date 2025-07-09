@@ -4,7 +4,7 @@ import React from 'react';
 type ImageContainerProps = {
   src: string;
   heigth: number;
-  maxWidth: number;
+  maxWidth?: number;
 };
 
 export const ProductImage = ({ maxWidth, src, heigth }: ImageContainerProps) => {
