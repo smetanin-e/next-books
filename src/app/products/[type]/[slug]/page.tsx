@@ -1,46 +1,44 @@
-import { Typography } from '@mui/material';
+import { Box, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
-import { prisma } from '../../../../../prisma/prisma-client';
+import { fetchBooksFromParams } from '@/ui/fetchBooksFromParams';
+import { StyledContainer } from '@/styles';
+import { ProductCard } from '@/app/components';
 
-export default async function Test({
+export default async function Products({
   params,
 }: {
   params: Promise<{ slug: string; type: string }>;
 }) {
   const { slug, type } = await params;
 
-  async function testF() {
-    try {
-      if (type === 'subcategory') {
-        const result = await prisma.subCategory.findUnique({
-          where: { slug: slug },
-          include: { books: true },
-        });
-        return result;
-      } else if (type === 'category') {
-        const result = await prisma.category.findUnique({
-          where: { slug: slug },
-          include: { books: true },
-        });
-        return result;
-      } else if (type === 'tag') {
-        const result = await prisma.tag.findUnique({
-          where: { slug: slug },
-          include: { books: true },
-        });
-        return result;
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  const books = await testF();
+  const { books, title } = await fetchBooksFromParams(type, slug);
   console.log(books);
 
   return (
-    <Typography textAlign={'center'} mt={5}>
-      {slug}
-    </Typography>
+    <StyledContainer>
+      <Typography variant='h4' component='h2' mb={2}>
+        {title}
+      </Typography>
+      <Paper
+        elevation={4}
+        sx={{
+          position: 'relative',
+          marginBlockStart: '4px',
+          marginBlockEnd: '30px',
+          padding: {
+            xs: '0px 1px',
+            md: '20px 12px',
+          },
+        }}
+      >
+        <Stack direction='row' gap={4} flexWrap='wrap'>
+          {books?.map((item) => (
+            <Box key={item.id} maxWidth='200px'>
+              <ProductCard book={item} />
+            </Box>
+          ))}
+        </Stack>
+      </Paper>
+    </StyledContainer>
   );
 }
