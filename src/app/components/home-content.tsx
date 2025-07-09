@@ -1,16 +1,7 @@
 'use client';
 
 import React from 'react';
-import CustomTheme from '@/styles/theme';
-import {
-  Box,
-  Container,
-  Paper,
-  ThemeProvider,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { Book } from '@prisma/client';
 import { ProductCard } from '../components';
@@ -32,7 +23,7 @@ export const HomeContent: React.FC<Props> = ({ items }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   //const Component = matches ? BoxContainer : SliderContainer;
-  const responseElevation = matches ? 0 : 4;
+
   console.log(items);
   return (
     <StyledContainer>
@@ -42,7 +33,7 @@ export const HomeContent: React.FC<Props> = ({ items }) => {
             {item.name}
           </Typography>
           <Paper
-            elevation={responseElevation}
+            elevation={4}
             sx={{
               position: 'relative',
               marginBlockStart: '4px',

@@ -69,7 +69,15 @@ async function generateData() {
             connect: [{ id: 1}, {id:2} ]
             }
         }
-    });
+    },);
+    await prisma.book.update({
+        where: { id: 4 },
+        data: {
+            tags: {
+            connect: [{ id: 3}, {id:2} ]
+            }
+        }
+    },);
 
     await prisma.rating.createMany({
         data: ratings

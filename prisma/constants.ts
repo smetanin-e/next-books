@@ -35,12 +35,14 @@ export const subcategories = [
 export const tags = [
     {name: "Новинки"},
     {name: "Бестселлеры"},
+    {name: "Специальное предложение"}
 ]
 
 export const ratings = [
     {ONE: 1, TWO: 0, THREE: 4, FOUR:12, FIVE: 65, bookId: 1},
     { bookId: 2},
     {ONE: 2, TWO: 4, THREE: 12, FOUR:64, FIVE: 80, bookId: 3},
+    {ONE: 9, TWO: 12, THREE: 86, FOUR:265, FIVE: 389, bookId: 4},
 ]
 
 
@@ -70,6 +72,7 @@ export const books = [
     categoryId: 1,
     subcategoryId: 4,
     
+    
      
   },
  {
@@ -86,6 +89,18 @@ export const books = [
     
      
   },
+  {
+    imageUrl:
+      'https://cv6.litres.ru/pub/c/elektronnaya-kniga/cover_415/147663-li-kuan-u-iz-tretego-mira-v-pervyy-istoriya-singapura-1965-2000.webp',
+    title: 'Из третьего мира – в первый',
+    author: 'Ли Куан Ю',
+    description:
+      'Когда крохотный Сингапур в 1965 году получил независимость, никто не верил, что ему удастся выжить. Каким же образом фактория Великобритании превратилась в процветающую столицу Азиатского региона с лучшим в мире аэропортом, крупнейшей авиалинией, ключевым торговым портом и заняла четвертое место в мире по уровню дохода на душу населения?',
+    price: 499,
+    categoryId: 2,
+    subcategoryId: 5,
+    
+     
+  },
 ]
-
 

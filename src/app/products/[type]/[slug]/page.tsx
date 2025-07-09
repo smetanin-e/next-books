@@ -10,8 +10,8 @@ export default async function Products({
   params: Promise<{ slug: string; type: string }>;
 }) {
   const { slug, type } = await params;
-
   const { books, title } = await fetchBooksFromParams(type, slug);
+
   console.log(books);
 
   return (
@@ -26,7 +26,7 @@ export default async function Products({
           marginBlockStart: '4px',
           marginBlockEnd: '30px',
           padding: {
-            xs: '0px 1px',
+            xs: '10px 10px',
             md: '20px 12px',
           },
         }}

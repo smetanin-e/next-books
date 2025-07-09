@@ -8,7 +8,7 @@ interface MainMobileContainerProps {
 
 const ProductsBoxContainer: React.FC<MainMobileContainerProps> = ({ children }) => {
   return (
-    <Stack direction='row' gap={2} flexWrap='wrap'>
+    <Stack p={1} direction='row' gap={2} flexWrap='wrap'>
       {children}
     </Stack>
   );
