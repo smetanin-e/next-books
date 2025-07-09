@@ -54,6 +54,7 @@ export const StyledImage = styled('img')({
 
 export const StyledLink = styled(Link)({
  textDecoration: 'none',
+ color: 'inherit'
  
 //  "&:hover": {
 //    background: 'red',

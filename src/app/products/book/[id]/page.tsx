@@ -1,6 +1,5 @@
 import { Box, Breadcrumbs, Paper, Stack, Typography } from '@mui/material';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import Link from 'next/link';
 
 import { BookGridContainer, StyledAboutContainer } from '@/styles/product-page';
 import {
@@ -14,10 +13,10 @@ import {
   ReadMoreLink,
 } from '@/app/components';
 
-import { prisma } from '../../../../prisma/prisma-client';
 import { notFound } from 'next/navigation';
 import { totalRating } from '@/ui/totalRating';
-import { StyledContainer } from '@/styles';
+import { StyledContainer, StyledLink } from '@/styles';
+import { prisma } from '../../../../../prisma/prisma-client';
 
 export default async function Product({ params }: { params: Promise<{ id: number }> }) {
   const productId = (await params).id;
@@ -26,13 +25,18 @@ export default async function Product({ params }: { params: Promise<{ id: number
     include: { rating: true },
   });
 
+  const category = await prisma.category.findFirst({
+    where: { id: product?.categoryId },
+  });
+
+  const subcategory = await prisma.subCategory.findFirst({
+    where: { id: product?.subcategoryId },
+  });
+
   if (!product) {
     return notFound();
   }
   const ratingInfo = totalRating(product.rating!);
-  console.log(ratingInfo);
-
-  const breadcrumbs = ['Главная', 'Детские книги', 'Сказки'];
 
   //xs-0 sm-600 md-900 lg-1200 xl-1536
   return (
@@ -41,11 +45,11 @@ export default async function Product({ params }: { params: Promise<{ id: number
       <StyledContainer>
         <Stack spacing={2} mb={2}>
           <Breadcrumbs separator={<KeyboardDoubleArrowRightIcon />} aria-label='breadcrumb'>
-            {breadcrumbs.map((item) => (
-              <Link key={item} color='inherit' href='/'>
-                {item}
-              </Link>
-            ))}
+            <StyledLink href='/'>Главная</StyledLink>
+            <StyledLink href={`/products/category/${category?.slug}`}>{category?.name}</StyledLink>
+            <StyledLink href={`/products/subcategory/${subcategory?.slug}`}>
+              {subcategory?.name}
+            </StyledLink>
           </Breadcrumbs>
         </Stack>
         <Typography variant='h5' component='h1' paddingBlockEnd={2}>

@@ -1,13 +1,13 @@
 import { Box, Paper, Stack } from '@mui/material';
-import { prisma } from '../../../prisma/prisma-client';
-import { ProductCard, ProductsTitle } from '../components';
+
+import { ProductCard } from '../components';
 import { StyledContainer } from '@/styles';
+import { prisma } from '../../../prisma/prisma-client';
 
 export default async function Products() {
   const books = await prisma.book.findMany();
   return (
     <StyledContainer>
-      <ProductsTitle />
       <Paper
         elevation={4}
         sx={{

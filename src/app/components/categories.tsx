@@ -18,26 +18,17 @@ import {
 } from '@mui/material';
 
 import { useCatalog } from '../hooks/useCatalog';
-import { useProductsParamStore } from '@/store/products-param';
 import { StyledLink } from '@/styles';
 import { useAppDrawerStore } from '@/store/appDrawer';
 
 export const Categories = () => {
   const { categories, subcategories, loading } = useCatalog();
 
-  const { value, setValue } = useProductsParamStore((state) => state);
   const { setDrawerOpen } = useAppDrawerStore((state) => state);
 
-  //   const [value, setValue] = React.useState<string | null>('');
-
-  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
-    const target = event.target as HTMLSpanElement;
-    //console.log(target.textContent);
-    setValue(target.textContent);
+  const handleClick = () => {
     setDrawerOpen(false);
   };
-
-  console.log(value);
 
   const MiddleDivider = styled((props) => (
     <Divider orientation='horizontal' variant='middle' {...props} />
@@ -60,40 +51,50 @@ export const Categories = () => {
             <CircularProgress color='primary' />
           </Box>
         ) : (
-          categories.map((category) => (
-            <Box key={category.id}>
-              <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>
-                <StyledLink href={`/products/category/${category.slug}`}>
-                  <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                      <AutoStoriesRoundedIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={category.name} />
-                  </ListItemButton>
-                </StyledLink>
-              </Grow>
-              <MiddleDivider />
-              {subcategories.map((subcategory) => (
-                <Box key={subcategory.id}>
-                  {category.id === subcategory.categoryId && (
-                    <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>
-                      <StyledLink href={`/products/subcategory/${subcategory.slug}`}>
-                        <List component='div' disablePadding>
-                          <ListItemButton sx={{ pl: 4 }} onClick={handleClick}>
-                            <ListItemIcon>
-                              <HorizontalRuleRoundedIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={subcategory.name} />
-                          </ListItemButton>
-                          <MiddleDivider />
-                        </List>
-                      </StyledLink>
-                    </Grow>
+          categories.map(
+            (category) =>
+              category.books.length > 0 && (
+                <Box key={category.id}>
+                  <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>
+                    <StyledLink href={`/products/category/${category.slug}`}>
+                      <ListItemButton onClick={handleClick}>
+                        <ListItemIcon>
+                          <AutoStoriesRoundedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={category.name} />
+                      </ListItemButton>
+                    </StyledLink>
+                  </Grow>
+                  <MiddleDivider />
+                  {subcategories.map(
+                    (subcategory) =>
+                      subcategory.books.length > 0 && (
+                        <Box key={subcategory.id}>
+                          {category.id === subcategory.categoryId && (
+                            <Grow
+                              in={true}
+                              style={{ transformOrigin: '0 0 0' }}
+                              {...{ timeout: 1000 }}
+                            >
+                              <StyledLink href={`/products/subcategory/${subcategory.slug}`}>
+                                <List component='div' disablePadding>
+                                  <ListItemButton sx={{ pl: 4 }} onClick={handleClick}>
+                                    <ListItemIcon>
+                                      <HorizontalRuleRoundedIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={subcategory.name} />
+                                  </ListItemButton>
+                                  <MiddleDivider />
+                                </List>
+                              </StyledLink>
+                            </Grow>
+                          )}
+                        </Box>
+                      ),
                   )}
                 </Box>
-              ))}
-            </Box>
-          ))
+              ),
+          )
         )}
       </List>
     </Box>

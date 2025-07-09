@@ -1,12 +1,16 @@
-import { Category, SubCategory } from "@prisma/client"
+import { Book, Category, SubCategory } from "@prisma/client"
 import React from "react"
 import { Api } from "../../../services/api-clients";
 
+
+type CategoryProps = Category & {books: Book[]}
+type SubCategoryProps = SubCategory & {books: Book[]}
 interface ReturnProps {
-    categories: Category[]
-    subcategories: SubCategory[]
+    categories: CategoryProps[]
+    subcategories: SubCategoryProps[]
     loading: boolean
 }
+
 export const useCatalog = (): ReturnProps => {
     const [categories, setCategories] = React.useState<Category[]>([]);
     const [subcategories, setSubcategories] = React.useState<SubCategory[]>([]);
