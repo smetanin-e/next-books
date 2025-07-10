@@ -7,11 +7,17 @@ import { CartInfo, CartItem } from '../components';
 import { useCartStore } from '@/store';
 
 export default function Cart() {
-  const { getCartItems, items, totalAmount } = useCartStore();
+  const { getCartItems, items, totalAmount, updateItemsQuantity, removeCartItem } = useCartStore();
 
   React.useEffect(() => {
     getCartItems();
   }, []);
+
+  const onClickCountButton = (id: number, quantity: number, type: 'inctement' | 'decrement') => {
+    console.log({ id, quantity, type });
+    const newQuantity = type === 'inctement' ? quantity + 1 : quantity - 1;
+    updateItemsQuantity(id, newQuantity);
+  };
 
   console.log(items);
 
@@ -23,7 +29,15 @@ export default function Cart() {
       </Stack>
       <CartContainer>
         <Stack spacing={3} flexGrow={1}>
-          {items && items.map((item) => <CartItem key={item.id} item={item} />)}
+          {items &&
+            items.map((item) => (
+              <CartItem
+                onClickRemoveItem={() => removeCartItem(item.id)}
+                onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+                key={item.id}
+                item={item}
+              />
+            ))}
         </Stack>
 
         <CartInfo quantity={items.length} amount={totalAmount} />

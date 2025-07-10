@@ -17,6 +17,7 @@ export {Search} from './search'
 export {ProductImage} from './product-image'
 export {CartItem} from './cart-item'
 export {CartInfo} from './cart-info'
+export {CountButton} from './count-button'
 
 
 

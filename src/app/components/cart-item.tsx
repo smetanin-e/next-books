@@ -1,18 +1,18 @@
 import { Box, Divider, IconButton, Stack, Typography } from '@mui/material';
 import React from 'react';
 
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { ProductImage } from '../components';
+import { CountButton, ProductImage } from '../components';
 import { CartStateItem } from '@/lib';
 
 interface Props {
   className?: string;
   item: CartStateItem;
+  onClickCountButton?: (type: 'inctement' | 'decrement') => void;
+  onClickRemoveItem?: () => void;
 }
 
-export const CartItem: React.FC<Props> = ({ item }) => {
+export const CartItem: React.FC<Props> = ({ item, onClickCountButton, onClickRemoveItem }) => {
   return (
     <>
       <Stack direction={'row'} spacing={3}>
@@ -30,24 +30,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
             <Typography>{item.title}</Typography>
             <Typography color='textSecondary'>{item.author}</Typography>
           </Stack>
-
-          <Stack
-            flexGrow={1}
-            sx={{ justifyContent: { md: 'end' } }}
-            direction={'row'}
-            spacing={2}
-            alignItems={'center'}
-          >
-            <IconButton disabled={item.quantity === 1} size='small' sx={{ background: '#f3f3f3' }}>
-              <RemoveIcon />
-            </IconButton>
-            <Typography textAlign={'center'} width={20} variant='body1'>
-              {item.quantity}
-            </Typography>
-            <IconButton size='small' sx={{ background: '#f3f3f3' }}>
-              <AddIcon />
-            </IconButton>
-          </Stack>
+          <CountButton onClick={onClickCountButton} quantity={item.quantity} />
 
           <Stack
             alignItems={'center'}
@@ -62,7 +45,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
               </Typography>
             </Box>
 
-            <IconButton size='small'>
+            <IconButton onClick={onClickRemoveItem} size='small'>
               <DeleteOutlineIcon />
             </IconButton>
           </Stack>
