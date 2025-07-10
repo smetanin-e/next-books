@@ -15,7 +15,7 @@ interface CatrState {
     totalPrice: number
    
    /* Запрос на получение товаров из корзины */
-   fetchCartItems: () => Promise<void>
+   getCartItems: () => Promise<void>
 
     /* Запрос на обновление количества товаров */
    updateItemsQuantity: (id: number, quantity: number) => Promise<void>
@@ -34,7 +34,7 @@ export const useCartStore = create<CatrState>()((set) => ({
     totalAmount: 0,
     totalPrice: 0,
 
-    fetchCartItems: async () => {
+    getCartItems: async () => {
         try{
             set({loading: true, error: false})
             const data = await Api.cart.fetchCart()

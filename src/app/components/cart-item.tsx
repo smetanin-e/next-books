@@ -38,15 +38,14 @@ export const CartItem: React.FC<Props> = ({ item }) => {
             spacing={2}
             alignItems={'center'}
           >
-            <IconButton size='small' sx={{ background: '#f3f3f3' }}>
-              <AddIcon />
+            <IconButton disabled={item.quantity === 1} size='small' sx={{ background: '#f3f3f3' }}>
+              <RemoveIcon />
             </IconButton>
             <Typography textAlign={'center'} width={20} variant='body1'>
               {item.quantity}
             </Typography>
-
             <IconButton size='small' sx={{ background: '#f3f3f3' }}>
-              <RemoveIcon />
+              <AddIcon />
             </IconButton>
           </Stack>
 
@@ -57,7 +56,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
             justifyContent={'space-between'}
           >
             <Box>
-              <Typography>{item.quantity * item.price} ₽</Typography>
+              <Typography>{item.totalPrice} ₽</Typography>
               <Typography variant='body2' color='textSecondary'>
                 {item.quantity} шт. по {item.price} ₽
               </Typography>

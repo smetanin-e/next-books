@@ -7,10 +7,10 @@ import { CartInfo, CartItem } from '../components';
 import { useCartStore } from '@/store';
 
 export default function Cart() {
-  const { fetchCartItems, items } = useCartStore();
+  const { getCartItems, items, totalAmount } = useCartStore();
 
   React.useEffect(() => {
-    fetchCartItems();
+    getCartItems();
   }, []);
 
   console.log(items);
@@ -26,7 +26,7 @@ export default function Cart() {
           {items && items.map((item) => <CartItem key={item.id} item={item} />)}
         </Stack>
 
-        <CartInfo />
+        <CartInfo quantity={items.length} amount={totalAmount} />
       </CartContainer>
     </StyledContainer>
   );

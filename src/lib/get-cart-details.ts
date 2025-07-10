@@ -10,7 +10,7 @@ export type CartStateItem = {
     imageUrl: string
     author: string
     price: number
-    //totalPrice: number
+    totalPrice: number
 }
 
 interface ReturnProps {
@@ -25,7 +25,7 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
         imageUrl: item.book.imageUrl,
         author: item.book.author,
         price: item.book.price,
-        //totalPrice: item.book.price * item.quantity
+        totalPrice: item.book.price * item.quantity
     }))
  return {
     totalAmount: data.totalAmount,
