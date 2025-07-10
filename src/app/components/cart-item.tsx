@@ -5,22 +5,19 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { ProductImage } from '../components';
+import { CartStateItem } from '@/lib';
 
 interface Props {
   className?: string;
+  item: CartStateItem;
 }
 
-export const CartItem: React.FC<Props> = () => {
+export const CartItem: React.FC<Props> = ({ item }) => {
   return (
     <>
       <Stack direction={'row'} spacing={3}>
         <Stack direction={'row'} spacing={2} flexShrink={0}>
-          <ProductImage
-            heigth={120}
-            src={
-              'https://content.img-gorod.ru/pim/products/images/8d/14/0196ae94-8845-735f-ba96-5fe38c328d14.jpg?width=608&height=867&fit=bounds'
-            }
-          />
+          <ProductImage heigth={120} src={item.imageUrl} />
         </Stack>
 
         <Stack
@@ -30,16 +27,22 @@ export const CartItem: React.FC<Props> = () => {
           sx={{ flexDirection: { md: 'row' } }}
         >
           <Stack spacing={2} justifyContent={'center'}>
-            <Typography>Эли и Гастон. Дух осени</Typography>
-            <Typography color='textSecondary'>Людовик Виллен, Селин Дереньокур</Typography>
+            <Typography>{item.title}</Typography>
+            <Typography color='textSecondary'>{item.author}</Typography>
           </Stack>
 
-          <Stack direction={'row'} spacing={2} alignItems={'center'}>
+          <Stack
+            flexGrow={1}
+            sx={{ justifyContent: { md: 'end' } }}
+            direction={'row'}
+            spacing={2}
+            alignItems={'center'}
+          >
             <IconButton size='small' sx={{ background: '#f3f3f3' }}>
               <AddIcon />
             </IconButton>
             <Typography textAlign={'center'} width={20} variant='body1'>
-              12
+              {item.quantity}
             </Typography>
 
             <IconButton size='small' sx={{ background: '#f3f3f3' }}>
@@ -54,9 +57,9 @@ export const CartItem: React.FC<Props> = () => {
             justifyContent={'space-between'}
           >
             <Box>
-              <Typography>6150 ₽</Typography>
+              <Typography>{item.quantity * item.price} ₽</Typography>
               <Typography variant='body2' color='textSecondary'>
-                20 шт. по 6150 ₽
+                {item.quantity} шт. по {item.price} ₽
               </Typography>
             </Box>
 

@@ -14,7 +14,7 @@ import {
 } from '@/app/components';
 
 import { notFound } from 'next/navigation';
-import { totalRating } from '@/lib/totalRating';
+import { totalRating } from '@/lib';
 import { StyledContainer, StyledLink } from '@/styles';
 import { prisma } from '../../../../../prisma/prisma-client';
 

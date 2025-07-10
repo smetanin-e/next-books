@@ -19,7 +19,7 @@ import {
 
 import { useCatalog } from '../../hooks/useCatalog';
 import { StyledLink } from '@/styles';
-import { useAppDrawerStore } from '@/store/appDrawer';
+import { useAppDrawerStore } from '@/store';
 
 export const Categories = () => {
   const { categories, subcategories, loading } = useCatalog();

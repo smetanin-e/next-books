@@ -1,6 +1,6 @@
 import { Box, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
-import { fetchBooksFromParams } from '@/lib/fetchBooksFromParams';
+import { getBooksFromParams } from '@/lib';
 import { StyledContainer } from '@/styles';
 import { ProductCard } from '@/app/components';
 
@@ -10,7 +10,7 @@ export default async function Products({
   params: Promise<{ slug: string; type: string }>;
 }) {
   const { slug, type } = await params;
-  const { books, title } = await fetchBooksFromParams(type, slug);
+  const { books, title } = await getBooksFromParams(type, slug);
 
   console.log(books);
 

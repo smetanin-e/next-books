@@ -14,7 +14,7 @@ interface ReturnProps {
     title: string 
 }
 
-export const fetchBooksFromParams = async (type: string, slug: string): Promise<ReturnProps> => {
+export const getBooksFromParams = async (type: string, slug: string): Promise<ReturnProps> => {
     let books:Book[] = []
     let title = ''
     try {

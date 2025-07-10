@@ -1,7 +1,9 @@
 import { Button, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
 
-export const CartInfo = () => {
+interface Props {}
+
+export const CartInfo: React.FC<Props> = ({}) => {
   return (
     <Paper elevation={2} sx={{ flexShrink: 0, mb: 2 }}>
       <Stack spacing={2} p={2}>

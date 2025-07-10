@@ -4,7 +4,7 @@ import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { Menu } from '../components';
-import { useAppDrawerStore } from '@/store/appDrawer';
+import { useAppDrawerStore } from '@/store';
 
 export const Navigation = () => {
   const setDrawerOpen = useAppDrawerStore((state) => state.setDrawerOpen);

@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material';
 
-import { useAppDrawerStore } from '@/store/appDrawer';
+import { useAppDrawerStore } from '@/store';
 import { Categories, Menu } from '../components';
 
 export const CategoriesDrawer = () => {
