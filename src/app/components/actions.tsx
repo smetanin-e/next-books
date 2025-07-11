@@ -8,12 +8,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import { Badge, useMediaQuery, useTheme } from '@mui/material';
 import { ActionsContainer, ActionsTypography, ActionIconButton, StyledLink } from '@/styles';
-import { useAppDrawerStore } from '@/store';
+import { useAppDrawerStore, useCartStore } from '@/store';
 import Link from 'next/link';
 //import { useUIContext } from '@/context/ui';
 
 export const Actions = () => {
-  //const { setDrawerOpen } = useUIContext();
+  const { totalQuantity } = useCartStore();
   const setDrawerOpen = useAppDrawerStore((state) => state.setDrawerOpen);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('md'));
@@ -39,7 +39,7 @@ export const Actions = () => {
       )}
       <StyledLink href={'/cart'}>
         <ActionIconButton aria-label='cart'>
-          <Badge badgeContent={29} color='primary'>
+          <Badge badgeContent={totalQuantity} color='primary'>
             <ShoppingCartIcon color='action' fontSize={iconSize} />
           </Badge>
           <ActionsTypography>Корзина</ActionsTypography>

@@ -102,9 +102,9 @@ model Cart {
 
     token String
 
-    totalAmount Int @default(0)
-
-    cartItems CartItem[]
+    totalAmount   Int        @default(0)
+    totalQuantity Int        @default(0)
+    cartItems     CartItem[]
 
     createAt DateTime @default(now())
     updateAt DateTime @updatedAt
@@ -119,7 +119,7 @@ model CartItem {
     bookId Int?
     book   Book? @relation(fields: [bookId], references: [id])
 
-    quantity Int
+    quantity Int @default(1)
 
     createAt DateTime @default(now())
     updateAt DateTime @updatedAt

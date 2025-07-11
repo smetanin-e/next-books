@@ -1,7 +1,7 @@
 
 import { ApiRoutes } from "./constants"
 import { axiosInstance } from "./instance"
-import { CartDTO } from "./dto/cart.dto"
+import { CartDTO, CreateCartItemValue } from "./dto/cart.dto"
 
 export const getCart = async():Promise<CartDTO> => {
     const {data} = await axiosInstance.get<CartDTO>(ApiRoutes.CART)
@@ -19,5 +19,10 @@ export const removeCartItem = async (itemId: number):Promise<CartDTO> => {
     const {data} = await axiosInstance.delete<CartDTO>('/cart/' + itemId)
     return data
     //return (await axiosInstance.patch<CartDTO>('/cart/' + itemId, {quantity})).data
+}
+
+export const addToCart = async (value: CreateCartItemValue):Promise<CartDTO> => {
+    const {data} = await axiosInstance.post<CartDTO>('/cart', value)
+    return data
 }
 

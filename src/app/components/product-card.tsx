@@ -73,7 +73,7 @@ export const ProductCard = ({ book }: BookType) => {
           </Link>
         </CardContent>
 
-        <CardButtons buttonVariant='outlined' text={'в корзину'} />
+        <CardButtons itemId={book.id} buttonVariant='outlined' text={'в корзину'} />
       </Card>
     </ProductCardContainer>
   );
