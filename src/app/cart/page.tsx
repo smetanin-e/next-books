@@ -23,7 +23,7 @@ export default function Cart() {
   return (
     <>
       {totalAmount === 0 ? (
-        <Box>Empty</Box>
+        <Box>Корзина пустая</Box>
       ) : (
         <StyledContainer>
           <Stack mb={3} direction={'row'} justifyContent={'space-between'} alignItems={'center'}>

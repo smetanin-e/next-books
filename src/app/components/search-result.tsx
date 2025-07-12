@@ -18,10 +18,10 @@ export const SearchResult: React.FC<Props> = ({ value, products, cleareInput, lo
       {value && (
         <Paper elevation={2} sx={{ mt: 1 }}>
           {loading ? (
-            <Box pt={1} width={'100%'} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box pt={1} pb={1} width={'100%'} sx={{ display: 'flex', justifyContent: 'center' }}>
               <CircularProgress color='primary' />
             </Box>
-          ) : (
+          ) : products.length > 0 ? (
             products.map((obj) => (
               <StyledLink key={obj.id} href={`/products/book/${obj.id}`} onClick={cleareInput}>
                 <Grow
@@ -48,6 +48,8 @@ export const SearchResult: React.FC<Props> = ({ value, products, cleareInput, lo
                 </Grow>
               </StyledLink>
             ))
+          ) : (
+            <Typography p={1}>Ничего не найдено...</Typography>
           )}
           {/* <Grow
             in={!!value}

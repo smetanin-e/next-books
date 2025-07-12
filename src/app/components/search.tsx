@@ -3,7 +3,7 @@
 import React from 'react';
 import { useClickAway, useDebounce } from 'react-use';
 import CloseIcon from '@mui/icons-material/Close';
-import { TextField, IconButton } from '@mui/material';
+import { TextField, IconButton, Box } from '@mui/material';
 import { SearchContainer, SearchOverlay } from '@/styles/header';
 import { Api } from '../../../services/api-clients';
 import { Book } from '@prisma/client';
@@ -43,7 +43,7 @@ export const Search = () => {
     500,
     [value],
   );
-
+  console.log(loading);
   return (
     <>
       {focused && <SearchOverlay />}
@@ -72,7 +72,7 @@ export const Search = () => {
             },
           }}
         />
-        {focused && products.length > 0 && (
+        {focused && (
           <SearchResult
             loading={loading}
             cleareInput={cleareInput}
