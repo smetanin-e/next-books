@@ -13,11 +13,16 @@ import Link from 'next/link';
 //import { useUIContext } from '@/context/ui';
 
 export const Actions = () => {
-  const { totalQuantity } = useCartStore();
+  const { getCartItems, totalQuantity } = useCartStore();
   const setDrawerOpen = useAppDrawerStore((state) => state.setDrawerOpen);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down('md'));
   const iconSize = match ? 'medium' : 'large';
+
+  React.useEffect(() => {
+    getCartItems();
+  }, []);
+
   return (
     <ActionsContainer direction='row' spacing={2} pt={1}>
       {match && (

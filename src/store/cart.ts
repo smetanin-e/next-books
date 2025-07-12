@@ -39,7 +39,11 @@ export const useCartStore = create<CatrState>()((set) => ({
         try{
             set({loading: true, error: false})
             const data = await Api.cart.getCart()
-            set(getCartDetails(data))
+            console.log(data)
+            if (data.hasOwnProperty("cartItems")) {
+                set(getCartDetails(data))
+            }
+            
         } catch (e) {
             console.error(e)
             set({error: true})

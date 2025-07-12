@@ -20,8 +20,6 @@ export default function Cart() {
     updateItemsQuantity(id, newQuantity);
   };
 
-  console.log(items);
-
   return (
     <>
       {totalAmount === 0 ? (

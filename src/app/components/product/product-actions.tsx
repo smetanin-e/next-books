@@ -1,18 +1,19 @@
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import React from 'react';
 
 import CheckIcon from '@mui/icons-material/Check';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+//import FavoriteIcon from '@mui/icons-material/Favorite';
+//import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { PriceContainer } from '@/styles/product-page';
 import { CardButtons } from '..';
 
 interface PriceInfoProps {
   price: number;
   sale?: number | null;
+  id: number;
 }
-export const ProductActions = ({ price, sale }: PriceInfoProps) => {
+export const ProductActions = ({ price, sale, id }: PriceInfoProps) => {
   return (
     <PriceContainer elevation={2}>
       <Box p={2}>
@@ -63,7 +64,7 @@ export const ProductActions = ({ price, sale }: PriceInfoProps) => {
             </Stack>
           )}
         </Stack>
-        <CardButtons buttonVariant='contained' text={'добавить в корзину'} />
+        <CardButtons itemId={id} buttonVariant='contained' text={'добавить в корзину'} />
       </Box>
     </PriceContainer>
   );

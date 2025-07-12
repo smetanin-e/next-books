@@ -24,7 +24,6 @@ export const HomeContent: React.FC<Props> = ({ items }) => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   //const Component = matches ? BoxContainer : SliderContainer;
 
-  console.log(items);
   return (
     <StyledContainer>
       {items.map((item) => (

@@ -111,7 +111,7 @@ export default async function Product({ params }: { params: Promise<{ id: number
               order: { lg: 3, sm: 2, xs: 2 },
             }}
           >
-            <ProductActions price={product.price} sale={product.sale} />
+            <ProductActions id={product.id} price={product.price} sale={product.sale} />
           </Box>
 
           <Box
