@@ -5,12 +5,14 @@ import { CartDTO } from "../../services/dto/cart.dto"
 
 export type CartStateItem = {
     id: number
+    article: number
     quantity: number
     title: string
     imageUrl: string
     author: string
     price: number
     totalPrice: number
+    sale?: number | null
 }
 
 interface ReturnProps {
@@ -21,12 +23,14 @@ interface ReturnProps {
 export const getCartDetails = (data: CartDTO): ReturnProps => {
     const items = data.cartItems.map((item) => ({
         id: item.id,
+        article:item.book.id,
         quantity: item.quantity,
         title: item.book.title,
         imageUrl: item.book.imageUrl,
         author: item.book.author,
         price: item.book.price,
-        totalPrice: item.book.price * item.quantity
+        totalPrice: item.book.price * item.quantity,
+        sale: item.book.sale
     }))
  return {
     totalAmount: data.totalAmount,

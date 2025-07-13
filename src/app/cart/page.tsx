@@ -1,5 +1,5 @@
 'use client';
-import { StyledContainer } from '@/styles';
+import { StyledContainer, StyledLink } from '@/styles';
 import { CartContainer } from '@/styles/cart';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import React from 'react';
@@ -43,7 +43,15 @@ export default function Cart() {
                 ))}
             </Stack>
 
-            <CartInfo quantity={totalQuantity} amount={totalAmount} />
+            <CartInfo items={items} totalQuantity={totalQuantity} totalAmount={totalAmount}>
+              <StyledLink href={'/checkout'}>
+                <Stack p={2} justifyContent={'center'}>
+                  <Button variant='contained' size='small'>
+                    Перейти к оформлению
+                  </Button>
+                </Stack>
+              </StyledLink>
+            </CartInfo>
           </CartContainer>
         </StyledContainer>
       )}
