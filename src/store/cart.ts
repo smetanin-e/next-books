@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 import { create } from "zustand";
 import { Api } from "../../services/api-clients";
@@ -55,6 +55,7 @@ export const useCartStore = create<CatrState>()((set) => ({
         try{
             set({loading: true, error: false})
             const data = await Api.cart.updateItemQuantity(id, quantity)
+      
             set(getCartDetails(data))
         } catch (e) {
             console.error(e)

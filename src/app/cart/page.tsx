@@ -4,7 +4,7 @@ import { CartContainer } from '@/styles/cart';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { CartInfo, CartItem } from '../components';
-import { useCartStore } from '@/store';
+import { useCartStore, useCountButtonsBookId } from '@/store';
 
 export default function Cart() {
   const {
@@ -21,9 +21,12 @@ export default function Cart() {
     getCartItems();
   }, []);
 
+  const { setCartItemId } = useCountButtonsBookId();
+
   const onClickCountButton = (id: number, quantity: number, type: 'inctement' | 'decrement') => {
     console.log({ id, quantity, type });
     const newQuantity = type === 'inctement' ? quantity + 1 : quantity - 1;
+    setCartItemId(id);
     updateItemsQuantity(id, newQuantity);
   };
 

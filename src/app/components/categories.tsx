@@ -17,18 +17,21 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useCatalog } from '../../hooks/useCatalog';
 import { StyledLink } from '@/styles';
-import { useAppDrawerStore } from '@/store';
+import { useAppDrawerStore, useCategoriesStore } from '@/store';
 
 export const Categories = () => {
-  const { categories, subcategories, loading } = useCatalog();
+  const { categories, subcategories, loading, getCategories } = useCategoriesStore();
 
-  const { setDrawerOpen } = useAppDrawerStore((state) => state);
+  const { setDrawerOpen } = useAppDrawerStore();
 
   const handleClick = () => {
     setDrawerOpen(false);
   };
+
+  React.useEffect(() => {
+    getCategories();
+  }, []);
 
   const MiddleDivider = styled((props) => (
     <Divider orientation='horizontal' variant='middle' {...props} />

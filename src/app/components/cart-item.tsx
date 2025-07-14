@@ -30,7 +30,7 @@ export const CartItem: React.FC<Props> = ({ item, onClickCountButton, onClickRem
             <Typography>{item.title}</Typography>
             <Typography color='textSecondary'>{item.author}</Typography>
           </Stack>
-          <CountButton onClick={onClickCountButton} quantity={item.quantity} />
+          <CountButton id={item.id} onClick={onClickCountButton} quantity={item.quantity} />
 
           <Stack
             alignItems={'center'}

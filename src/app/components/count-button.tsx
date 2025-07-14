@@ -2,15 +2,18 @@ import { CircularProgress, IconButton, Stack, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from 'react';
-import { useCartStore } from '@/store';
+import { useCartStore, useCountButtonsBookId } from '@/store';
 
 interface Props {
+  id: number;
   quantity?: number;
   onClick?: (value: 'inctement' | 'decrement') => void;
 }
 //loading ? <CircularProgress sx={{ mr: 2 }} size={'15px'} /> :
-export const CountButton: React.FC<Props> = ({ quantity, onClick }) => {
+export const CountButton: React.FC<Props> = ({ id, quantity, onClick }) => {
   const { loading } = useCartStore();
+  const { cartItemId } = useCountButtonsBookId();
+  console.log({ id, cartItemId });
   return (
     <Stack
       flexGrow={1}
@@ -29,7 +32,7 @@ export const CountButton: React.FC<Props> = ({ quantity, onClick }) => {
         <RemoveIcon />
       </IconButton>
       <Typography textAlign={'center'} width={20} variant='body1'>
-        {loading ? <CircularProgress size={'15px'} /> : quantity}
+        {id === cartItemId && loading ? <CircularProgress size={'15px'} /> : quantity}
       </Typography>
       <IconButton
         onClick={() => onClick?.('inctement')}
