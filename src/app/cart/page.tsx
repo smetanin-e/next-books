@@ -7,8 +7,15 @@ import { CartInfo, CartItem } from '../components';
 import { useCartStore } from '@/store';
 
 export default function Cart() {
-  const { getCartItems, items, totalAmount, totalQuantity, updateItemsQuantity, removeCartItem } =
-    useCartStore();
+  const {
+    loading,
+    getCartItems,
+    items,
+    totalAmount,
+    totalQuantity,
+    updateItemsQuantity,
+    removeCartItem,
+  } = useCartStore();
 
   React.useEffect(() => {
     getCartItems();
@@ -42,8 +49,12 @@ export default function Cart() {
                   />
                 ))}
             </Stack>
-
-            <CartInfo items={items} totalQuantity={totalQuantity} totalAmount={totalAmount}>
+            <CartInfo
+              loading={loading}
+              items={items}
+              totalQuantity={totalQuantity}
+              totalAmount={totalAmount}
+            >
               <StyledLink href={'/checkout'}>
                 <Stack p={2} justifyContent={'center'}>
                   <Button variant='contained' size='small'>

@@ -43,7 +43,6 @@ export const Search = () => {
     500,
     [value],
   );
-  console.log(loading);
   return (
     <>
       {focused && <SearchOverlay />}
