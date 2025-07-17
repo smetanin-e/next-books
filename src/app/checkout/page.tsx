@@ -8,13 +8,14 @@ import { CartContainer } from '@/styles/cart';
 import { StyledContainer } from '@/styles';
 
 import { Controller, useForm } from 'react-hook-form';
+import { createOrder } from '../actions';
 
-type FormValues = {
+export type FormValues = {
   name: string;
   email: string;
   phone: string;
   adress: string;
-  comment?: string;
+  comment: string;
 };
 
 export default function Checkout() {
@@ -33,8 +34,15 @@ export default function Checkout() {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const url = await createOrder(data);
+      if (url) {
+        location.href = url;
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

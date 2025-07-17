@@ -22,6 +22,8 @@ export {AdressInput} from './adress-input'
 export {CartInfoSkeleton} from './cart-info-skeleton'
 export {CartItemSkeleton} from './cart-item-skeleton'
 
+export * from './email-templates'
+
 
 
 

@@ -21,6 +21,7 @@ export const CartInfo: React.FC<Props> = ({
   children,
 }) => {
   const sale = totalSale(items);
+
   const delivery = 0;
   return (
     <Box
@@ -73,7 +74,7 @@ export const CartInfo: React.FC<Props> = ({
               {loading ? (
                 <CircularProgress sx={{ mr: 2 }} size={'15px'} />
               ) : (
-                totalAmount - sale + delivery
+                totalAmount + sale - (sale + delivery)
               )}{' '}
               ₽
             </Typography>
