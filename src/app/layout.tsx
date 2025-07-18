@@ -17,7 +17,6 @@ export default function RootLayout({
 }>) {
   return (
     <html style={{ height: '100%', background: '#f0f0f0' }} lang='ru'>
-      <head></head>
       <body
         style={{
           minHeight: '100%',

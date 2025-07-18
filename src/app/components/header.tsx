@@ -1,14 +1,14 @@
 'use client';
 import React from 'react';
 import logo from '../../../public/logo.png'; // ИСПРАВИТЬ
-import { AppBar, Container, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Container, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { HeaderContainer, HeaderLayout, HeaderLogo } from '@/styles/header';
 
 import Link from 'next/link';
 import { Actions, Navigation, Search } from '../components';
-
-//import { AppDrawer } from '../drawer';
+import { useSearchParams } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
 interface Props {
   className?: string;
@@ -17,6 +17,14 @@ interface Props {
 export const Header: React.FC<Props> = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.up('md'));
+
+  const params = useSearchParams();
+
+  React.useEffect(() => {
+    if (params.has('paid')) {
+      toast.success('Заказ успешно оплачен!');
+    }
+  }, []);
 
   return (
     <HeaderLayout>
@@ -37,6 +45,9 @@ export const Header: React.FC<Props> = () => {
           <Navigation />
         </Container>
       </AppBar>
+      <Typography component={'div'}>
+        <Toaster toastOptions={{ duration: 2000 }} />
+      </Typography>
     </HeaderLayout>
   );
 };

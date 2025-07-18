@@ -164,7 +164,7 @@ model VerificationCode {
 
 enum OrderStatus {
     PENDING
-    SUCCESSED
+    SUCCEEDED
     CANCELED
 }
 

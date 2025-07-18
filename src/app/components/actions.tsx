@@ -10,7 +10,6 @@ import { Badge, useMediaQuery, useTheme } from '@mui/material';
 import { ActionsContainer, ActionsTypography, ActionIconButton, StyledLink } from '@/styles';
 import { useAppDrawerStore, useCartStore } from '@/store';
 import Link from 'next/link';
-//import { useUIContext } from '@/context/ui';
 
 export const Actions = () => {
   const { getCartItems, totalQuantity } = useCartStore();
