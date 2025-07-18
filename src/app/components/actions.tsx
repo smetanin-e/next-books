@@ -10,6 +10,8 @@ import { Badge, useMediaQuery, useTheme } from '@mui/material';
 import { ActionsContainer, ActionsTypography, ActionIconButton, StyledLink } from '@/styles';
 import { useAppDrawerStore, useCartStore } from '@/store';
 import Link from 'next/link';
+import { Login } from './@modal/login';
+import { Registration } from './@modal/registration';
 
 export const Actions = () => {
   const { getCartItems, totalQuantity } = useCartStore();
@@ -56,11 +58,12 @@ export const Actions = () => {
         </Badge>
         <ActionsTypography>Избранное</ActionsTypography>
       </ActionIconButton>
-      <ActionIconButton aria-label='prifile'>
+      <ActionIconButton aria-label='profile'>
         <AccountCircleIcon color='action' fontSize={iconSize} />
 
         <ActionsTypography>Профиль</ActionsTypography>
       </ActionIconButton>
+      <Registration />
     </ActionsContainer>
   );
 };
